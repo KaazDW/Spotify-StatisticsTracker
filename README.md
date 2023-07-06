@@ -1,6 +1,6 @@
 # SpotifyTracker
 
-This template should help get you started developing with Vue 3 in Vite.
+Spotify Statistics Tracker app made in VUEJS (work in progress)
 
 ## Recommended IDE Setup
 
