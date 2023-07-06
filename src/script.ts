@@ -14,25 +14,42 @@ if (!code) {
     console.log(code);
 } else {
     const accessToken = await getAccessToken(clientId, code);
+    console.log(accessToken);
     const profile = await fetchProfile(accessToken);
+    const tracks = await fetchTopTrack(accessToken);
     populateUI(profile);
 }
 
 async function fetchProfile(code: string): Promise<UserProfile> {
+    console.log(code);
     const result = await fetch("https://api.spotify.com/v1/me/", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${code}`
-      }
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${code}`
+        }
     });
-  
+
     const data = await result.json();
     console.log(data);
     return data;
-  }
+}
+
+
+
+async function fetchTopTrack(code: string): Promise<UserProfile> {
+    const result = await fetch("https://api.spotify.com/v1/me/top/tracks", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${code}`
+        }
+    });
+
+    const data = await result.json();
+    console.log(data);
+    return data;
+}
 
 function populateUI(profile: UserProfile) {
-    console.log(profile)
     document.getElementById("displayName")!.innerText = profile.display_name;
     document.getElementById("avatar")!.setAttribute("src", profile.images[0].url)
     document.getElementById("id")!.innerText = profile.id;
@@ -43,3 +60,4 @@ function populateUI(profile: UserProfile) {
     document.getElementById("url")!.setAttribute("href", profile.href);
     document.getElementById("imgUrl")!.innerText = profile.images[0].url;
 }
+
