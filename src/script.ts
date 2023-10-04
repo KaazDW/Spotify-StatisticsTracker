@@ -37,16 +37,21 @@ async function fetchProfile(code: string): Promise<UserProfile> {
 
 
 async function fetchTopTrack(code: string): Promise<UserProfile> {
-    const result = await fetch("https://api.spotify.com/v1/me/top/tracks", {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${code}`
-        }
-    });
-
-    const data = await result.json();
-    console.log(data);
-    return data;
+    let offset = 0;
+    let allTopTracks = [];
+    while(offset <= 200){
+        const result = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=20&offset=" + offset, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${code}`
+            }
+        });
+        const data = await result.json();
+        allTopTracks = allTopTracks.concat(data.items);
+        offset += 20;
+    }
+    console.log(allTopTracks);
+    return allTopTracks;
 }
 
 function populateUI(profile: UserProfile) {
