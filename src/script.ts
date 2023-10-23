@@ -6,22 +6,16 @@ const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
-console.log(window.location.search);
-console.log(params);
-console.log(code);
 if (!code) {
     redirectToAuthCodeFlow(clientId);
-    console.log(code);
 } else {
     const accessToken = await getAccessToken(clientId, code);
-    console.log(accessToken);
     const profile = await fetchProfile(accessToken);
-    const tracks = await fetchTopTrack(accessToken);
+    const tracks = await fetchTopTrack(accessToken, 0, "long_term");
     populateUI(profile);
 }
 
 async function fetchProfile(code: string): Promise<UserProfile> {
-    console.log(code);
     const result = await fetch("https://api.spotify.com/v1/me/", {
         method: "GET",
         headers: {
@@ -30,17 +24,16 @@ async function fetchProfile(code: string): Promise<UserProfile> {
     });
 
     const data = await result.json();
-    console.log(data);
     return data;
 }
 
 
 
-async function fetchTopTrack(code: string): Promise<UserProfile> {
-    let offset = 0;
+async function fetchTopTrack(code: string, offset: integer, time: string): Promise<UserProfile> {
     let allTopTracks = [];
-    while(offset <= 200){
-        const result = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=20&offset=" + offset, {
+    let iteration = 1;
+    while(iteration <= 5){
+        const result = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=20&offset=" + offset + "&time_range=" + time, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${code}`
@@ -48,7 +41,10 @@ async function fetchTopTrack(code: string): Promise<UserProfile> {
         });
         const data = await result.json();
         allTopTracks = allTopTracks.concat(data.items);
+        console.log("offset : " + offset + "; it : " + iteration);
+        console.log(allTopTracks);
         offset += 20;
+        iteration++;
     }
     console.log(allTopTracks);
     return allTopTracks;
@@ -65,4 +61,6 @@ function populateUI(profile: UserProfile) {
     document.getElementById("url")!.setAttribute("href", profile.href);
     document.getElementById("imgUrl")!.innerText = profile.images[0].url;
 }
+
+
 
