@@ -11,7 +11,8 @@ if (!code) {
 } else {
     const accessToken = await getAccessToken(clientId, code);
     const profile = await fetchProfile(accessToken);
-    const tracks = await fetchTopTrack(accessToken, 0, "long_term");
+    const tracks = await fetchTopTrack(accessToken, "long_term");
+    const artists = await fetchTopArtist(accessToken, "long_term");
     populateUI(profile);
 }
 
@@ -27,28 +28,40 @@ async function fetchProfile(code: string): Promise<UserProfile> {
     return data;
 }
 
-
-
-async function fetchTopTrack(code: string, offset: integer, time: string): Promise<UserProfile> {
-    let allTopTracks = [];
-    let iteration = 1;
-    while(iteration <= 5){
-        const result = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=20&offset=" + offset + "&time_range=" + time, {
+async function fetchTopTrack(code: string, time: string): Promise<UserProfile> {
+    let TopTracks = [];
+     
+    for(let i=0; i<4; i++){
+        const result = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=50&offset=0&time_range=" + time, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${code}`
             }
         });
         const data = await result.json();
-        allTopTracks = allTopTracks.concat(data.items);
-        console.log("offset : " + offset + "; it : " + iteration);
-        console.log(allTopTracks);
-        offset += 20;
-        iteration++;
+        TopTracks = TopTracks .concat(data.items);
     }
-    console.log(allTopTracks);
-    return allTopTracks;
+    console.log("TopTracks : ", time, " : ", TopTracks);
+    return TopTracks;
 }
+
+async function fetchTopArtist(code: string, time: string): Promise<UserProfile> {
+    let TopArtists = [];
+     
+    for(let i=0; i<1; i++){
+        const result = await fetch("https://api.spotify.com/v1/me/top/artists?limit=50&offset=0&time_range=" + time, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${code}`
+            }
+        });
+        const data = await result.json();
+        TopArtists = TopArtists .concat(data.items);
+    }
+    console.log("TopArtists : ", time, " : ", TopArtists);
+    return TopArtists;
+}
+
 
 function populateUI(profile: UserProfile) {
     document.getElementById("displayName")!.innerText = profile.display_name;
