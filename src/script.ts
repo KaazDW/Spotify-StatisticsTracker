@@ -13,6 +13,7 @@ if (!code) {
     const profile = await fetchProfile(accessToken);
     const tracks = await fetchTopTrack(accessToken, "long_term");
     const artists = await fetchTopArtist(accessToken, "long_term");
+    const current = await fetchCurrentlyPlaying(accessToken);
     populateUI(profile);
 }
 
@@ -60,6 +61,21 @@ async function fetchTopArtist(code: string, time: string): Promise<UserProfile> 
     }
     console.log("TopArtists : ", time, " : ", TopArtists);
     return TopArtists;
+}
+
+async function fetchCurrentlyPlaying(code: string): Promise<UserProfile> {
+    let CurrentPlay = [];
+     
+    const result = await fetch("https://api.spotify.com/v1/me/player/currently-playing?market=FR", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${code}`
+        }
+    });
+    const data = await result.json();
+    CurrentPlay = data;
+    console.log("CurrentPlay : ", CurrentPlay);
+    return CurrentPlay;
 }
 
 
