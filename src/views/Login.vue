@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { initializeApp } from '@/auth_script.ts';
+import { initializeApp } from '@/script.ts';
 
 initializeApp();
 </script>

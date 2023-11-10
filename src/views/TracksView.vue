@@ -7,9 +7,10 @@ fetchData();
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <section id="profile">
+      <section id="profile">
     <h2>Logged in as <span id="displayName"></span></h2>
     <img id="avatar" width="200" src="#" />
+    
     <ul>
       <li>User ID: <span id="id"></span></li>
       <li>Email: <span id="email"></span></li>
