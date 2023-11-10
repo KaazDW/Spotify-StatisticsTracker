@@ -3,7 +3,7 @@
 * {
   margin: 0;
   padding: 0;
-  color: var(--white);
+  color: var(--color-white);
 }
 * ul {
   list-style: none;
@@ -20,11 +20,10 @@
   --color-black: #1B1B1C;
   --color-white: white;
   --color-background: var(--color-black);
-  --color-primary: #F1EFE7;
-  --color-red: #FF6F59;
-  --color-blue: #576CA8;
+  --color-green: #1ED760;
   --font-title: "Archivo Black", sans-serif;
   --font-content: "Poppins", sans-serif;
+  --radius: "10px";
 }
 
 body {
@@ -34,7 +33,64 @@ body {
 }
 
 .home {
+  margin: auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.home h5 {
+  font-weight: 400;
+  font-size: 18px;
+}
+.home h5 i {
+  margin-left: 5px;
+}
+.home h1 {
+  font-family: var(--font-title);
+  font-size: 50px;
+}
+.home img {
+  height: 250px;
+  z-index: 10;
+  margin-top: -25px;
+}
+.home .bottom {
+  width: 275px;
+  margin-top: -10px;
+}
+.home .bottom .space {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  border-radius: 10px;
+}
+.home .bottom .button-login {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+.home .bottom .button-login i {
+  width: 30%;
+  color: var(--color-green);
+  font-size: 30px;
+}
+
+.btn {
+  background-color: var(--color-green);
+  padding-left: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+.btn i {
+  margin-left: 15px;
+  margin-top: 4px;
+  color: var(--color-black);
 }
 
 /*# sourceMappingURL=base.css.map */
