@@ -2,41 +2,28 @@
 // we detect a callback from Spotify by checking for the hash fragment
 import { redirectToAuthCodeFlow, getAccessToken } from "./authCodeWithPkce";
 
+const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
+
 export async function initializeApp() {
-  const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get("code");
-    console.log('initializeApp')
-
-  if (!code) {
-    redirectToAuthCodeFlow(clientId);
-  } else {
-    const accessToken = await getAccessToken(clientId, code);
-    const profile = await fetchProfile(accessToken);
-    const tracks = await fetchTopTrack(accessToken, "long_term");
-    const artists = await fetchTopArtist(accessToken, "long_term");
-    // const current = await fetchCurrentlyPlaying(accessToken);
-    populateUI(profile);
-  }
-}
-
-export async function fetchData() {
-    const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
+   const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
     console.log('fetchdata')
   
     if (!code) {
-      redirectToAuthCodeFlow(clientId);
+        redirectToAuthCodeFlow(clientId);
     } else {
-      const accessToken = await getAccessToken(clientId, code);
-      const profile = await fetchProfile(accessToken);
-      const tracks = await fetchTopTrack(accessToken, "long_term");
-      const artists = await fetchTopArtist(accessToken, "long_term");
-      // const current = await fetchCurrentlyPlaying(accessToken);
-      populateUI(profile);
+        const accessToken = await getAccessToken(clientId, code);
+        const profile = await fetchProfile(accessToken);
+        const tracks_long = await fetchTopTrack(accessToken, "long_term");
+        const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
+        const tracks_short = await fetchTopTrack(accessToken, "short_term");
+        const artists_long = await fetchTopArtist(accessToken, "long_term");
+        const artists_medium = await fetchTopArtist(accessToken, "medium_term");
+        const artists_short = await fetchTopArtist(accessToken, "short_term");
+        populateUI(profile);
     }
-  }
+}
 
 async function fetchProfile(code: string): Promise<UserProfile> {
     const result = await fetch("https://api.spotify.com/v1/me/", {
@@ -111,7 +98,20 @@ async function fetchCurrentlyPlaying(code: string): Promise<UserProfile> {
 }
 
 
+// function populateUI(profile: UserProfile) {
+//     document.getElementById("displayName")!.innerText = profile.display_name;
+//     document.getElementById("avatar")!.setAttribute("src", profile.images[0].url)
+//     document.getElementById("id")!.innerText = profile.id;
+//     document.getElementById("email")!.innerText = profile.email;
+//     document.getElementById("uri")!.innerText = profile.uri;
+//     document.getElementById("uri")!.setAttribute("href", profile.external_urls.spotify);
+//     document.getElementById("url")!.innerText = profile.href;
+//     document.getElementById("url")!.setAttribute("href", profile.href);
+//     document.getElementById("imgUrl")!.innerText = profile.images[0].url;
+// }
+
 function populateUI(profile: UserProfile) {
+    console.log(profile);
     document.getElementById("displayName")!.innerText = profile.display_name;
     document.getElementById("avatar")!.setAttribute("src", profile.images[0].url)
     document.getElementById("id")!.innerText = profile.id;

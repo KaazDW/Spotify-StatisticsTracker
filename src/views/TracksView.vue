@@ -1,24 +1,23 @@
 <script setup lang="ts">
-import { fetchData } from '@/script.ts';
+import { initializeApp} from '@/script.ts';
 
-fetchData();
+initializeApp();
+
 </script>
 
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-      <section id="profile">
-    <h2>Logged in as <span id="displayName"></span></h2>
-    <img id="avatar" width="200" src="#" />
-    
-    <ul>
-      <li>User ID: <span id="id"></span></li>
-      <li>Email: <span id="email"></span></li>
-      <li>Spotify URI: <a id="uri" href="#"></a></li>
-      <li>Link: <a id="url" href="#"></a></li>
-      <li>Profile Image: <span id="imgUrl"></span></li>
-    </ul>
-  </section> 
+    <section id="profile">
+      <RouterLink class="btn" to="/">Retour<i class="bi bi-arrow-up-right-square-fill" style="color: var(--color-black);"></i></RouterLink>
+      <img id="avatar" width="200" src="#" />
+      <ul>
+        <li>Logged in as <span id="displayName"></span></li>
+        <li>User ID: <span id="id"></span></li>
+        <li>Email: <span id="email"></span></li>
+        <li>Profile Image: <span id="imgUrl"></span></li>
+      </ul>
+
+    </section> 
   </div>
 </template>
 
