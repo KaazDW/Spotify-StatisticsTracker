@@ -8,7 +8,8 @@ initializeApp();
 <template>
   <div class="about">
     <section id="profile">
-      <RouterLink class="btn" to="/">Retour<i class="bi bi-arrow-up-right-square-fill" style="color: var(--color-black);"></i></RouterLink>
+      <RouterLink class="btn" to="/">Home<i class="bi bi-arrow-up-right-square-fill" style="color: var(--color-black);"></i></RouterLink>
+      <RouterLink class="btn" to="/login">Login<i class="bi bi-arrow-up-right-square-fill" style="color: var(--color-black);"></i></RouterLink>
       <img id="avatar" width="200" src="#" />
       <ul>
         <li>Logged in as <span id="displayName"></span></li>
@@ -16,8 +17,10 @@ initializeApp();
         <li>Email: <span id="email"></span></li>
         <li>Profile Image: <span id="imgUrl"></span></li>
       </ul>
+      <section id="long">
 
-    </section> 
+      </section>
+    </section>
   </div>
 </template>
 

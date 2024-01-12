@@ -9,7 +9,7 @@ export async function initializeApp() {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
     console.log('fetchdata')
-  
+
     if (!code) {
         redirectToAuthCodeFlow(clientId);
     } else {
@@ -21,11 +21,13 @@ export async function initializeApp() {
         const artists_long = await fetchTopArtist(accessToken, "long_term");
         const artists_medium = await fetchTopArtist(accessToken, "medium_term");
         const artists_short = await fetchTopArtist(accessToken, "short_term");
-        populateUI(profile);
+        displayProfile(profile);
+        displayTracks(tracks_long);
+
     }
 }
 
-async function fetchProfile(code: string): Promise<UserProfile> {
+async function fetchProfile(code: string) {
     const result = await fetch("https://api.spotify.com/v1/me/", {
         method: "GET",
         headers: {
@@ -37,7 +39,7 @@ async function fetchProfile(code: string): Promise<UserProfile> {
     return data;
 }
 
-async function fetchTopTrack(code: string, time: string): Promise<UserProfile> {
+async function fetchTopTrack(code: string, time: string) {
     let TopTracks = [];
      
     for(let i=0; i<4; i++){
@@ -54,11 +56,11 @@ async function fetchTopTrack(code: string, time: string): Promise<UserProfile> {
     return TopTracks;
 }
 
-async function fetchTopArtist(code: string, time: string): Promise<UserProfile> {
+async function fetchTopArtist(code: string, time: string) {
     let TopArtists = [];
      
     for(let i=0; i<1; i++){
-        const result = await fetch("https://api.spotify.com/v1/me/top/artists?limit=50&offset=0&time_range=" + time, {
+        const result = await fetch("https://api.spotify.com/v1/me/top/artists?limit=20&offset=0&time_range=" + time, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${code}`
@@ -71,7 +73,7 @@ async function fetchTopArtist(code: string, time: string): Promise<UserProfile> 
     return TopArtists;
 }
 
-async function fetchCurrentlyPlaying(code: string): Promise<UserProfile> {
+async function fetchCurrentlyPlaying(code: string) {
     const result = await fetch("https://api.spotify.com/v1/me/player/currently-playing?market=FR", {
         method: "GET",
         headers: {
@@ -99,27 +101,33 @@ async function fetchCurrentlyPlaying(code: string): Promise<UserProfile> {
 
 
 // function populateUI(profile: UserProfile) {
-//     document.getElementById("displayName")!.innerText = profile.display_name;
+//     document.getElementById("displayName")!.innerText = profile.display_name ;
 //     document.getElementById("avatar")!.setAttribute("src", profile.images[0].url)
-//     document.getElementById("id")!.innerText = profile.id;
-//     document.getElementById("email")!.innerText = profile.email;
-//     document.getElementById("uri")!.innerText = profile.uri;
-//     document.getElementById("uri")!.setAttribute("href", profile.external_urls.spotify);
-//     document.getElementById("url")!.innerText = profile.href;
-//     document.getElementById("url")!.setAttribute("href", profile.href);
+//     document.getElementById("id")!.innerText = profile.id ;
+//     document.getElementById("email")!.innerText = profile. email ;
+//     document.getElementById("uri")!.innerText = profile.uri ;
+//     document.getElementById("uri")!.setAttribute("href", profile.external_urls.spotify) ;
+//     document.getElementById("url")!.innerText = profile.href ;
+//     document.getElementById("url")!.setAttribute("href", profile.href) ;
 //     document.getElementById("imgUrl")!.innerText = profile.images[0].url;
 // }
 
-function populateUI(profile: UserProfile) {
-    console.log(profile);
+function displayProfile(profile: UserProfile) {
     document.getElementById("displayName")!.innerText = profile.display_name;
-    document.getElementById("avatar")!.setAttribute("src", profile.images[0].url)
+    document.getElementById("avatar")!.setAttribute("src", profile.images[0].url);
     document.getElementById("id")!.innerText = profile.id;
     document.getElementById("email")!.innerText = profile.email;
-    document.getElementById("uri")!.innerText = profile.uri;
-    document.getElementById("uri")!.setAttribute("href", profile.external_urls.spotify);
-    document.getElementById("url")!.innerText = profile.href;
-    document.getElementById("url")!.setAttribute("href", profile.href);
+    document.getElementById("imgUrl")!.innerText = profile.images[0].url;
+}
+
+function displayTracks(tracks: Tracks) {
+
+    document.getElementById("long")!.innerText =
+
+    document.getElementById("displayName")!.innerText = profile.display_name;
+    document.getElementById("avatar")!.setAttribute("src", profile.images[0].url);
+    document.getElementById("id")!.innerText = profile.id;
+    document.getElementById("email")!.innerText = profile.email;
     document.getElementById("imgUrl")!.innerText = profile.images[0].url;
 }
 
