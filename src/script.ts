@@ -4,8 +4,8 @@ import { redirectToAuthCodeFlow, getAccessToken } from "./authCodeWithPkce";
 
 const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
 
-export async function initializeApp() {
-   const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
+export async function initializeApp(): Promise<any> {
+    const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
     console.log('fetchdata')
@@ -16,11 +16,11 @@ export async function initializeApp() {
         const accessToken = await getAccessToken(clientId, code);
         const profile = await fetchProfile(accessToken);
         const tracks_long = await fetchTopTrack(accessToken, "long_term");
-        const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
-        const tracks_short = await fetchTopTrack(accessToken, "short_term");
-        const artists_long = await fetchTopArtist(accessToken, "long_term");
-        const artists_medium = await fetchTopArtist(accessToken, "medium_term");
-        const artists_short = await fetchTopArtist(accessToken, "short_term");
+        // const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
+        // const tracks_short = await fetchTopTrack(accessToken, "short_term");
+        // const artists_long = await fetchTopArtist(accessToken, "long_term");
+        // const artists_medium = await fetchTopArtist(accessToken, "medium_term");
+        // const artists_short = await fetchTopArtist(accessToken, "short_term");
         displayProfile(profile);
         displayTracks(tracks_long);
 
@@ -36,6 +36,7 @@ async function fetchProfile(code: string) {
     });
 
     const data = await result.json();
+    console.log(data);
     return data;
 }
 
@@ -121,14 +122,32 @@ function displayProfile(profile: UserProfile) {
 }
 
 function displayTracks(tracks: Tracks) {
+    for (let i = 0; i < tracks.length; i++) {
+        // Récupération du nom de l'artiste dans l'album pour chaque élément
+        const artistName = tracks[i].album.artists[0].name;
 
-    document.getElementById("long")!.innerText =
+        // Affichage dans la console
+    }
+    for (let i = 0; i < tracks.length; i++) {
+        // Récupération des informations pour chaque élément
+        const albumName = tracks[i].album.name;
+        const artistName = tracks[i].album.artists[0].name;
+        const sonName = tracks[i].name;
+        const artistSpotifyLink = tracks[i].album.artists[0].external_urls.spotify;
+        const sonSpotifyLink = tracks[i].external_urls.spotify;
+        const imageSrc = tracks[i].album.images[0].url;
 
-    document.getElementById("displayName")!.innerText = profile.display_name;
-    document.getElementById("avatar")!.setAttribute("src", profile.images[0].url);
-    document.getElementById("id")!.innerText = profile.id;
-    document.getElementById("email")!.innerText = profile.email;
-    document.getElementById("imgUrl")!.innerText = profile.images[0].url;
+        // Affichage dans la console
+        console.log(`${i + 1} : ${artistName} : ${albumName} : ${sonName} : ${artistSpotifyLink} : ${sonSpotifyLink} : ${imageSrc}`);
+        console.log('----------------------');
+    }
+    // document.getElementById("longTitle")!.innerText =
+    //
+    // document.getElementById("displayName")!.innerText = profile.display_name;
+    // document.getElementById("avatar")!.setAttribute("src", profile.images[0].url);
+    // document.getElementById("id")!.innerText = profile.id;
+    // document.getElementById("email")!.innerText = profile.email;
+    // document.getElementById("imgUrl")!.innerText = profile.images[0].url;
 }
 
 
