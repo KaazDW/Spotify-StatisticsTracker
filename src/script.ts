@@ -122,12 +122,9 @@ function displayProfile(profile: UserProfile) {
 }
 
 function displayTracks(tracks: Tracks) {
-    for (let i = 0; i < tracks.length; i++) {
-        // Récupération du nom de l'artiste dans l'album pour chaque élément
-        const artistName = tracks[i].album.artists[0].name;
+    // Sélection de la section avec l'ID "long"
+    const longSection = document.getElementById("long");
 
-        // Affichage dans la console
-    }
     for (let i = 0; i < tracks.length; i++) {
         // Récupération des informations pour chaque élément
         const albumName = tracks[i].album.name;
@@ -140,15 +137,16 @@ function displayTracks(tracks: Tracks) {
         // Affichage dans la console
         console.log(`${i + 1} : ${artistName} : ${albumName} : ${sonName} : ${artistSpotifyLink} : ${sonSpotifyLink} : ${imageSrc}`);
         console.log('----------------------');
-    }
-    // document.getElementById("longTitle")!.innerText =
-    //
-    // document.getElementById("displayName")!.innerText = profile.display_name;
-    // document.getElementById("avatar")!.setAttribute("src", profile.images[0].url);
-    // document.getElementById("id")!.innerText = profile.id;
-    // document.getElementById("email")!.innerText = profile.email;
-    // document.getElementById("imgUrl")!.innerText = profile.images[0].url;
-}
 
+        // Création d'un élément <p> pour chaque élément
+        const paragraph = document.createElement('p');
+
+        // Ajout du texte à l'élément <p>
+        paragraph.innerText = `${i + 1} : ${artistName} : ${albumName} : ${sonName} : ${artistSpotifyLink} : ${sonSpotifyLink} : ${imageSrc}`;
+
+        // Ajout de l'élément <p> à la section avec l'ID "long"
+        longSection.appendChild(paragraph);
+    }
+}
 
 
