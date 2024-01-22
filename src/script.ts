@@ -120,13 +120,10 @@ function displayProfile(profile: UserProfile) {
     document.getElementById("email")!.innerText = profile.email;
     document.getElementById("imgUrl")!.innerText = profile.images[0].url;
 }
-
 function displayTracks(tracks: Tracks) {
-    // Sélection de la section avec l'ID "long"
     const longSection = document.getElementById("long");
 
     for (let i = 0; i < tracks.length; i++) {
-        // Récupération des informations pour chaque élément
         const albumName = tracks[i].album.name;
         const artistName = tracks[i].album.artists[0].name;
         const sonName = tracks[i].name;
@@ -134,19 +131,43 @@ function displayTracks(tracks: Tracks) {
         const sonSpotifyLink = tracks[i].external_urls.spotify;
         const imageSrc = tracks[i].album.images[0].url;
 
-        // Affichage dans la console
-        console.log(`${i + 1} : ${artistName} : ${albumName} : ${sonName} : ${artistSpotifyLink} : ${sonSpotifyLink} : ${imageSrc}`);
-        console.log('----------------------');
+        const paragraph = document.createElement('div');
 
-        // Création d'un élément <p> pour chaque élément
-        const paragraph = document.createElement('p');
+        const trackNumberSpan = document.createElement('span');
+        trackNumberSpan.innerText = `${i + 1}`;
+        trackNumberSpan.className = 'track-number';
+        paragraph.appendChild(trackNumberSpan);
 
-        // Ajout du texte à l'élément <p>
-        paragraph.innerText = `${i + 1} : ${artistName} : ${albumName} : ${sonName} : ${artistSpotifyLink} : ${sonSpotifyLink} : ${imageSrc}`;
+        const image = document.createElement('img');
+        image.src = imageSrc;
+        image.alt = sonName;
+        image.className = 'track-image';
+        paragraph.appendChild(image);
 
-        // Ajout de l'élément <p> à la section avec l'ID "long"
+        const sonNameLink = document.createElement('a');
+        sonNameLink.href = sonSpotifyLink;
+        sonNameLink.target = '_blank'; // Pour ouvrir dans un nouvel onglet
+        sonNameLink.innerText = sonName;
+        sonNameLink.className = 'son-name';
+        paragraph.appendChild(sonNameLink);
+
+        const artistNameLink = document.createElement('a');
+        artistNameLink.href = artistSpotifyLink;
+        artistNameLink.target = '_blank'; // Pour ouvrir dans un nouvel onglet
+        artistNameLink.innerText = artistName;
+        artistNameLink.className = 'artist-name';
+        paragraph.appendChild(artistNameLink);
+
+        const albumNameSpan = document.createElement('span');
+        albumNameSpan.innerText = albumName;
+        albumNameSpan.className = 'album-name';
+        paragraph.appendChild(albumNameSpan);
+
         longSection.appendChild(paragraph);
     }
 }
+
+
+
 
 

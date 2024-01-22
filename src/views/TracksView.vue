@@ -17,19 +17,13 @@
       <button @click="displaySection('short')">Short Term</button>
     </section>
 
-    <section :style="{ display: displayLong ? 'block' : 'none' }" id="long">
-      <!-- Contenu de la section long -->
-      <p>Contenu de la section long</p>
+    <section :style="{ display: displayLong ? 'block' : 'none' }" id="long" class="listing">
     </section>
 
-    <section :style="{ display: displayMedium ? 'block' : 'none' }" id="medium">
-      <!-- Contenu de la section medium -->
-      <p>Contenu de la section medium</p>
+    <section :style="{ display: displayMedium ? 'block' : 'none' }" id="medium" class="listing">
     </section>
 
-    <section :style="{ display: displayShort ? 'block' : 'none' }" id="short">
-      <!-- Contenu de la section short -->
-      <p>Contenu de la section short</p>
+    <section :style="{ display: displayShort ? 'block' : 'none' }" id="short" class="listing">
     </section>
   </div>
 </template>
@@ -45,12 +39,10 @@ const displayMedium = ref(false);
 const displayShort = ref(false);
 
 const displaySection = (section) => {
-  // Réinitialise l'affichage de toutes les sections à false
   displayLong.value = false;
   displayMedium.value = false;
   displayShort.value = false;
 
-  // Active l'affichage de la section spécifiée
   if (section === 'long') {
     displayLong.value = true;
   } else if (section === 'medium') {
@@ -62,5 +54,4 @@ const displaySection = (section) => {
 </script>
 
 <style scoped>
-/* Ajoutez du CSS si nécessaire */
 </style>

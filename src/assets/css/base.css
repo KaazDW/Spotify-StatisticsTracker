@@ -93,4 +93,25 @@ body {
   color: var(--color-black);
 }
 
+section.listing div {
+  background-color: #222;
+  border: 2px solid #333;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  align-items: center;
+}
+section.listing div .track-number {
+  width: 50px;
+}
+section.listing div * {
+  width: 150px;
+}
+section.listing div img {
+  width: 50px;
+  border-radius: 10px;
+}
+
 /*# sourceMappingURL=base.css.map */
