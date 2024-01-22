@@ -36,6 +36,17 @@ body {
   font-family: var(--font-content);
   color: var(--white);
 }
+
+#app {
+  width: 100%;
+  max-width: 630px;
+  margin:auto;
+  @media (max-width: 1300px) {
+    width: 100%;
+  }
+}
+
+
 .home{
     margin: auto;
     text-align: center;
@@ -81,9 +92,8 @@ body {
         }
     }
 }
-.btn{
+.btn-home{
     background-color: var(--color-green);
-    // padding: 3px 20px;
     padding-left: 15px;
     border-radius: 10px;
     display: flex;
@@ -97,29 +107,96 @@ body {
 
     }
 }
-
-section.listing{
-  div{
-    background-color: #222;
-    border: 2px solid #333;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(5, auto);
-    align-items: center;
-    .track-number{
+header{
+  margin-bottom: 10px;
+  margin-top: 30px;
+  margin: 30px 20px 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+  .user{
+    display: flex;
+    #profilePicture{
       width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      margin-right: 10px;
     }
-    //.track-image, artist-name, son-name, album-name{
-    //  width: 100px;
-    //}
-    *{
-      width: 150px;
+    .infos{
+      #email{
+        font-size: 12px;
+        color: #999;
+      }
     }
-    img{
-      width: 50px;
-      border-radius: 10px;
+  }
+  .links{
+    display: flex;
+    a{
+      font-size: 14px;
     }
   }
 }
+section.nav{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button{
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    display: flex;
+    border-radius: 5px;
+    margin: 0 5px;
+    align-items: center;
+  }
+}
+.btn{
+  background-color: var(--color-green);
+  padding: 5px;
+  display: flex;
+  border-radius: 5px;
+  margin: 0 5px;
+  align-items: center;
+}
+section.listing{
+  .element{
+    background-color: #222;
+    border: 2px solid #333;
+    padding: 10px;
+    margin: 5px 10px;
+    border-radius: 10px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    font-size: 15px;
+    @media (max-width: 1300px) {
+      grid-template-columns: 20px 50px repeat(2, auto);
+      font-size: 13px;
+    }
+    *{
+      width: 140px;
+    }
+    .track-number{
+      font-weight: 700;
+    }
+    .track-image{
+      width: 50px;
+      border-radius: 10px;
+    }
+    .son-name{
+      margin-left: 15px;
+    }
+    .element-info{
+      display: flex;
+      flex-direction: column;
+
+      .album-name{
+        color: #666;
+      }
+    }
+
+  }
+}
+

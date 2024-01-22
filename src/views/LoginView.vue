@@ -7,7 +7,7 @@
         <div class="space"></div>
         <div class="button-login">
           <i class="bi bi-spotify" style="color: var(--color-green);font-size: 40px;"></i>
-          <RouterLink class="btn" to="/login">Login<i class="bi bi-arrow-up-right-square-fill" style="color: var(--color-black);"></i></RouterLink>
+          <RouterLink class="btn-home" to="/login">Login<i class="bi bi-arrow-up-right-square-fill" style="color: var(--color-black);"></i></RouterLink>
         </div>
       </div>
      

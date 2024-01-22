@@ -32,6 +32,17 @@ body {
   color: var(--white);
 }
 
+#app {
+  width: 100%;
+  max-width: 630px;
+  margin: auto;
+}
+@media (max-width: 1300px) {
+  #app {
+    width: 100%;
+  }
+}
+
 .home {
   margin: auto;
   text-align: center;
@@ -78,7 +89,7 @@ body {
   font-size: 30px;
 }
 
-.btn {
+.btn-home {
   background-color: var(--color-green);
   padding-left: 15px;
   border-radius: 10px;
@@ -87,31 +98,102 @@ body {
   align-items: center;
   width: 70%;
 }
-.btn i {
+.btn-home i {
   margin-left: 15px;
   margin-top: 4px;
   color: var(--color-black);
 }
 
-section.listing div {
+header {
+  margin-bottom: 10px;
+  margin-top: 30px;
+  margin: 30px 20px 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+}
+header .user {
+  display: flex;
+}
+header .user #profilePicture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+header .user .infos #email {
+  font-size: 12px;
+  color: #999;
+}
+header .links {
+  display: flex;
+}
+header .links a {
+  font-size: 14px;
+}
+
+section.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section.nav button {
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  display: flex;
+  border-radius: 5px;
+  margin: 0 5px;
+  align-items: center;
+}
+
+.btn {
+  background-color: var(--color-green);
+  padding: 5px;
+  display: flex;
+  border-radius: 5px;
+  margin: 0 5px;
+  align-items: center;
+}
+
+section.listing .element {
   background-color: #222;
   border: 2px solid #333;
   padding: 10px;
-  margin: 5px 0;
+  margin: 5px 10px;
   border-radius: 10px;
-  display: grid;
-  grid-template-columns: repeat(5, auto);
   align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  font-size: 15px;
 }
-section.listing div .track-number {
-  width: 50px;
+@media (max-width: 1300px) {
+  section.listing .element {
+    grid-template-columns: 20px 50px repeat(2, auto);
+    font-size: 13px;
+  }
 }
-section.listing div * {
-  width: 150px;
+section.listing .element * {
+  width: 140px;
 }
-section.listing div img {
+section.listing .element .track-number {
+  font-weight: 700;
+}
+section.listing .element .track-image {
   width: 50px;
   border-radius: 10px;
+}
+section.listing .element .son-name {
+  margin-left: 15px;
+}
+section.listing .element .element-info {
+  display: flex;
+  flex-direction: column;
+}
+section.listing .element .element-info .album-name {
+  color: #666;
 }
 
 /*# sourceMappingURL=base.css.map */
