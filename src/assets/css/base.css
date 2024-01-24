@@ -166,12 +166,11 @@ section.listing .element {
   border-radius: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: 40px 50px repeat(2, auto);
   font-size: 15px;
 }
 @media (max-width: 1300px) {
   section.listing .element {
-    grid-template-columns: 20px 50px repeat(2, auto);
     font-size: 13px;
   }
 }

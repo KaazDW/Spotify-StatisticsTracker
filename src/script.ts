@@ -16,13 +16,15 @@ export async function initializeApp(): Promise<any> {
         const accessToken = await getAccessToken(clientId, code);
         const profile = await fetchProfile(accessToken);
         const tracks_long = await fetchTopTrack(accessToken, "long_term");
-        // const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
-        // const tracks_short = await fetchTopTrack(accessToken, "short_term");
+        const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
+        const tracks_short = await fetchTopTrack(accessToken, "short_term");
         // const artists_long = await fetchTopArtist(accessToken, "long_term");
         // const artists_medium = await fetchTopArtist(accessToken, "medium_term");
         // const artists_short = await fetchTopArtist(accessToken, "short_term");
         displayProfile(profile);
-        displayTracks(tracks_long);
+        displayTracks(tracks_long, "long");
+        displayTracks(tracks_medium, "medium");
+        displayTracks(tracks_short, "short");
 
     }
 }
@@ -118,8 +120,9 @@ function displayProfile(profile: UserProfile) {
     document.getElementById("profilePicture")!.setAttribute("src", profile.images[1].url);
     document.getElementById("email")!.innerText = profile.email;
 }
-function displayTracks(tracks: Tracks) {
-    const longSection = document.getElementById("long");
+function displayTracks(tracks: Tracks, query: string) {
+    console.log('query');
+    const longSection = document.getElementById(query);
 
     for (let i = 0; i < tracks.length; i++) {
         const albumName = tracks[i].album.name;
