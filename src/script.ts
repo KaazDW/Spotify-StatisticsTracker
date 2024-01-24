@@ -45,7 +45,7 @@ async function fetchProfile(code: string) {
 async function fetchTopTrack(code: string, time: string) {
     let TopTracks = [];
      
-    for(let i=0; i<4; i++){
+    for(let i=0; i<2; i++){
         const result = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=50&offset=0&time_range=" + time, {
             method: "GET",
             headers: {

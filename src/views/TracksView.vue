@@ -29,6 +29,7 @@
     </section>
 
     <section :style="{ display: displayLong ? 'block' : 'none' }" id="long" class="listing">
+
     </section>
 
     <section :style="{ display: displayMedium ? 'block' : 'none' }" id="medium" class="listing">
