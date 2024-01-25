@@ -1,9 +1,13 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+// Obtenez l'URL de déploiement de Vercel
+const vercelUrl = process.env.VERCEL_URL || '';
 
-// https://vitejs.dev/config/
+// Affichez l'URL dans la console pendant le développement
+console.log('Vercel URL:', vercelUrl);
+
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -12,4 +16,4 @@ export default defineConfig({
     }
   },
   base: './'
-})
+});
