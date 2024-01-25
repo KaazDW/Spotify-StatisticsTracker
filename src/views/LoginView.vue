@@ -10,6 +10,8 @@
           <RouterLink class="btn-home" to="/login">Login<i class="bi bi-arrow-up-right-square-fill" style="color: var(--color-black);"></i></RouterLink>
         </div>
       </div>
-     
+      <script>
+        console.log(${window.location.origin});
+      </script>
     </section>
 </template>
