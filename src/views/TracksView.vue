@@ -23,9 +23,9 @@
       </div>
     </header>
     <section class="nav">
-      <button @click="displaySection('long')">Long Term</button>
-      <button @click="displaySection('medium')">Medium Term</button>
-      <button @click="displaySection('short')">Short Term</button>
+      <button @click="displaySection('long')">All time</button>
+      <button @click="displaySection('medium')">6 months</button>
+      <button @click="displaySection('short')">Last month</button>
     </section>
 
     <section :style="{ display: displayLong ? 'block' : 'none' }" id="long" class="listing">
