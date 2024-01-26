@@ -5,11 +5,9 @@ import { redirectToAuthCodeFlow, getAccessToken } from "./authCodeWithPkce";
 const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
 
 export async function initializeApp(): Promise<any> {
-    const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
-    console.log('fetchdata')
-
+    console.log("location : ", window.location.origin);
     if (!code) {
         redirectToAuthCodeFlow(clientId);
     } else {

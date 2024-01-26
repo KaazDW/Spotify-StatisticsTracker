@@ -7,8 +7,8 @@ export async function redirectToAuthCodeFlow(clientId: string) {
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", "https://spotify-st.vercel.app/tracks");
-    params.append("scope", "user-read-private user-read-email user-top-read user-read-currently-playing");
+    params.append("redirect_uri", "http://localhost:5173/tracks");
+    params.append("scope", "user-read-private user-read-email user-top-read");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
     console.log(`https://accounts.spotify.com/authorize?${params.toString()}`);
@@ -23,7 +23,7 @@ export async function getAccessToken(clientId: string, code: string) {
     params.append("client_id", clientId);
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "https://spotify-st.vercel.app/tracks");
+    params.append("redirect_uri", "http://localhost:5173/tracks");
     params.append("code_verifier", verifier!);
 
     const result = await fetch("https://accounts.spotify.com/api/token", {
@@ -49,8 +49,12 @@ function generateCodeVerifier(length: number) {
 async function generateCodeChallenge(codeVerifier: string) {
     const data = new TextEncoder().encode(codeVerifier);
     const digest = await window.crypto.subtle.digest('SHA-256', data);
-    return btoa(String.fromCharCode.apply(null, [...new Uint8Array(digest)]))
+
+    // Utilisez Array.from pour convertir le tableau d'octets en une chaîne
+    const base64Url = btoa(String.fromCharCode(...Array.from(new Uint8Array(digest))))
         .replace(/\+/g, '-')
         .replace(/\//g, '_')
         .replace(/=+$/, '');
+
+    return base64Url;
 }
