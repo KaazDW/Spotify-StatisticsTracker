@@ -140,6 +140,7 @@ header{
 }
 section.nav{
   display: flex;
+  margin-top: 25px;
   align-items: center;
   justify-content: center;
   button{
@@ -150,6 +151,9 @@ section.nav{
     border-radius: 5px;
     margin: 0 5px;
     align-items: center;
+  }
+  .active{
+    background-color: var(--color-green);
   }
 }
 .btn{

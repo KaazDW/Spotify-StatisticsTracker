@@ -20,9 +20,10 @@ export async function initializeApp(): Promise<any> {
         const artists_medium = await fetchTopArtist(accessToken, "medium_term");
         const artists_short = await fetchTopArtist(accessToken, "short_term");
         console.log(JSON.stringify(artists_long, null, 2));
+        displayProfile(profile);
         displayArtists(artists_long, "longArtists");
-        // displayArtist(tracks_medium, "mediumArtists");
-        // displayArtist(tracks_short, "shortArtists");
+        displayArtists(artists_medium, "mediumArtists");
+        displayArtists(artists_short, "shortArtists");
         displayTracks(tracks_long, "longSongs");
         displayTracks(tracks_medium, "mediumSongs");
         displayTracks(tracks_short, "shortSongs");
@@ -167,19 +168,35 @@ function displayTracks(tracks: Tracks, query: string) {
 }
 function displayArtists(artists: Artist[], query: string) {
     const queryDiv = document.getElementById(query);
-
+    console.log("artists.length ", artists.length);
     for (let i = 0; i < artists.length; i++) {
-        const artist = artists[i];
+        if (!artists[i] || !artists[i].external_urls || !artists[i].images || artists[i].images.length < 3 || !artists[i].name) {
+            console.error(`Artiste invalide à l'indice ${i}`);
+            continue;
+        }
+
         const artistLink = document.createElement('a');
-        artistLink.href = artist.external_urls.spotify;
+        artistLink.href = artists[i].external_urls.spotify;
         artistLink.target = '_blank';
 
         const artistImage = document.createElement('img');
-        artistImage.src = artist.images[0].url; // Assuming the first image is preferred
-        artistImage.alt = artist.name;
+
+        if (artists[i].images[2]) {
+            artistImage.src = artists[i].images[2].url;
+            artistImage.alt = artists[i].name;
+        } else {
+            console.error(`L'artiste ${artists[i].name} n'a pas d'image disponible.`);
+        }
 
         const artistName = document.createElement('p');
-        artistName.textContent = artist.name;
+
+        // Ajout du numéro incrémental avant le nom de l'artiste
+        const artistNumberSpan = document.createElement('span');
+        artistNumberSpan.innerText = `${i + 1}. `;
+        artistNumberSpan.className = 'artist-number';
+        artistName.appendChild(artistNumberSpan);
+
+        artistName.textContent += artists[i].name;
 
         artistLink.appendChild(artistImage);
         artistLink.appendChild(artistName);
@@ -187,6 +204,7 @@ function displayArtists(artists: Artist[], query: string) {
         queryDiv.appendChild(artistLink);
     }
 }
+
 
 
 

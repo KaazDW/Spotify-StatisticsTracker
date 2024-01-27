@@ -136,6 +136,7 @@ header .links a {
 
 section.nav {
   display: flex;
+  margin-top: 25px;
   align-items: center;
   justify-content: center;
 }
@@ -147,6 +148,9 @@ section.nav button {
   border-radius: 5px;
   margin: 0 5px;
   align-items: center;
+}
+section.nav .active {
+  background-color: var(--color-green);
 }
 
 .btn {

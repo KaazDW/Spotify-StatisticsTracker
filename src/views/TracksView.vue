@@ -23,9 +23,9 @@
       </div>
     </header>
     <section class="nav">
-      <button @click="displaySection('long')">All time</button>
-      <button @click="displaySection('medium')">6 months</button>
-      <button @click="displaySection('short')">Last month</button>
+      <button @click="setActiveButton('long')" :class="{ active: activeButton === 'long' }">All time</button>
+      <button @click="setActiveButton('medium')" :class="{ active: activeButton === 'medium' }">6 months</button>
+      <button @click="setActiveButton('short')" :class="{ active: activeButton === 'short' }">Last month</button>
     </section>
 
     <section :style="{ display: displayLong ? 'block' : 'none' }" class="listing">
@@ -68,6 +68,13 @@ const displaySection = (section) => {
     displayShort.value = true;
   }
 };
+const activeButton = ref('home');
+
+const setActiveButton = (button) => {
+  activeButton.value = button;
+  displaySection(button);
+};
+setActiveButton('long');
 </script>
 
 <style scoped>
