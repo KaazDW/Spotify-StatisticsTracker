@@ -16,14 +16,16 @@ export async function initializeApp(): Promise<any> {
         const tracks_long = await fetchTopTrack(accessToken, "long_term");
         const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
         const tracks_short = await fetchTopTrack(accessToken, "short_term");
-        // const artists_long = await fetchTopArtist(accessToken, "long_term");
-        // const artists_medium = await fetchTopArtist(accessToken, "medium_term");
-        // const artists_short = await fetchTopArtist(accessToken, "short_term");
-        displayProfile(profile);
-        displayTracks(tracks_long, "long");
-        displayTracks(tracks_medium, "medium");
-        displayTracks(tracks_short, "short");
-
+        const artists_long = await fetchTopArtist(accessToken, "long_term");
+        const artists_medium = await fetchTopArtist(accessToken, "medium_term");
+        const artists_short = await fetchTopArtist(accessToken, "short_term");
+        console.log(artists_long);
+        displayArtist(artists_long, "longArtist");
+        // displayArtist(tracks_medium, "mediumArtist");
+        // displayArtist(tracks_short, "shortArtist");
+        displayTracks(tracks_long, "longSong");
+        displayTracks(tracks_medium, "mediumSong");
+        displayTracks(tracks_short, "shortSong");
     }
 }
 
@@ -100,28 +102,14 @@ async function fetchCurrentlyPlaying(code: string) {
     return data;
 }
 
-
-// function populateUI(profile: UserProfile) {
-//     document.getElementById("displayName")!.innerText = profile.display_name ;
-//     document.getElementById("avatar")!.setAttribute("src", profile.images[0].url)
-//     document.getElementById("id")!.innerText = profile.id ;
-//     document.getElementById("email")!.innerText = profile. email ;
-//     document.getElementById("uri")!.innerText = profile.uri ;
-//     document.getElementById("uri")!.setAttribute("href", profile.external_urls.spotify) ;
-//     document.getElementById("url")!.innerText = profile.href ;
-//     document.getElementById("url")!.setAttribute("href", profile.href) ;
-//     document.getElementById("imgUrl")!.innerText = profile.images[0].url;
-// }
-
 function displayProfile(profile: UserProfile) {
     document.getElementById("displayName")!.innerText = profile.display_name;
     document.getElementById("profilePicture")!.setAttribute("src", profile.images[1].url);
     document.getElementById("email")!.innerText = profile.email;
 }
-function displayTracks(tracks: Tracks, query: string) {
-    console.log('query');
-    const longSection = document.getElementById(query);
 
+function displayTracks(tracks: Tracks, query: string) {
+    const queryDiv = document.getElementById(query);
     for (let i = 0; i < tracks.length; i++) {
         const albumName = tracks[i].album.name;
         const artistName = tracks[i].album.artists[0].name;
@@ -174,9 +162,61 @@ function displayTracks(tracks: Tracks, query: string) {
         // Ajout de l'élément <div> avec la classe "element-info" au paragraphe
         paragraph.appendChild(artistAndAlbumDiv);
 
+        queryDiv.appendChild(paragraph);
+    }
+}
+function displayArtist(tracks: Tracks, query: string) {
+    const queryDiv = document.getElementById(query);
+    console.log("queryDiv : ", queryDiv);
 
+    for (let i = 0; i < tracks.length; i++) {
+        const albumName = tracks[i].album.name;
+        const artistName = tracks[i].album.artists[0].name;
+        const sonName = tracks[i].name;
+        const artistSpotifyLink = tracks[i].album.artists[0].external_urls.spotify;
+        const sonSpotifyLink = tracks[i].external_urls.spotify;
+        const imageSrc = tracks[i].album.images[0].url;
 
-        longSection.appendChild(paragraph);
+        // Création d'un élément <div> pour chaque élément avec la classe "element"
+        const paragraph = document.createElement('div');
+        paragraph.className = 'element';
+
+        const trackNumberSpan = document.createElement('span');
+        trackNumberSpan.innerText = `${i + 1}`;
+        trackNumberSpan.className = 'track-number';
+        paragraph.appendChild(trackNumberSpan);
+
+        // Création d'un élément <a> pour le nom du son
+        const sonNameLink = document.createElement('a');
+        sonNameLink.href = sonSpotifyLink;
+        sonNameLink.target = '_blank';
+        sonNameLink.innerText = sonName;
+        sonNameLink.className = 'son-name';
+        paragraph.appendChild(sonNameLink);
+
+        // Création d'un élément <a> pour l'image et le nom de l'artiste
+        const artistLink = document.createElement('a');
+        artistLink.href = artistSpotifyLink;
+        artistLink.target = '_blank';
+        artistLink.className = 'artist-link';
+
+        // Ajout de l'élément <img> pour l'image
+        const image = document.createElement('img');
+        image.src = imageSrc;
+        image.alt = sonName;
+        image.className = 'track-image';
+        artistLink.appendChild(image);
+
+        // Ajout de l'élément <span> pour le nom de l'artiste
+        const artistNameSpan = document.createElement('span');
+        artistNameSpan.innerText = artistName;
+        artistNameSpan.className = 'artist-name';
+        artistLink.appendChild(artistNameSpan);
+
+        // Ajout de l'élément <a> au paragraphe
+        paragraph.appendChild(artistLink);
+
+        queryDiv.appendChild(paragraph);
     }
 }
 

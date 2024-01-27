@@ -28,14 +28,19 @@
       <button @click="displaySection('short')">Last month</button>
     </section>
 
-    <section :style="{ display: displayLong ? 'block' : 'none' }" id="long" class="listing">
-
+    <section :style="{ display: displayLong ? 'block' : 'none' }" class="listing">
+      <div id="longArtist"></div>
+      <div id="longSong"></div>
     </section>
 
-    <section :style="{ display: displayMedium ? 'block' : 'none' }" id="medium" class="listing">
+    <section :style="{ display: displayMedium ? 'block' : 'none' }" class="listing">
+      <div id="mediumArtist"></div>
+      <div id="mediumSong"></div>
     </section>
 
-    <section :style="{ display: displayShort ? 'block' : 'none' }" id="short" class="listing">
+    <section :style="{ display: displayShort ? 'block' : 'none' }" class="listing">
+      <div id="shortArtist"></div>
+      <div id="shortSong"></div>
     </section>
   </div>
 </template>
