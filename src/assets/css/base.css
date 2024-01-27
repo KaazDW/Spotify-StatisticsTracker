@@ -158,7 +158,32 @@ section.nav button {
   align-items: center;
 }
 
-section.listing .element {
+section.listing #longArtists, section.listing #mediumArtists, section.listing #shortArtists {
+  margin: 25px 0;
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+section.listing #longArtists::-webkit-scrollbar, section.listing #mediumArtists::-webkit-scrollbar, section.listing #shortArtists::-webkit-scrollbar {
+  display: none;
+}
+section.listing #longArtists a, section.listing #mediumArtists a, section.listing #shortArtists a {
+  margin: 0 10px;
+}
+section.listing #longArtists a img, section.listing #mediumArtists a img, section.listing #shortArtists a img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+section.listing #longArtists a p, section.listing #mediumArtists a p, section.listing #shortArtists a p {
+  font-size: 13px;
+  color: grey;
+  font-style: italic;
+}
+section.listing #longSongs .element, section.listing #mediumSongs .element, section.listing #shortSongs .element {
   background-color: #222;
   border: 2px solid #333;
   padding: 10px;
@@ -170,28 +195,28 @@ section.listing .element {
   font-size: 15px;
 }
 @media (max-width: 1300px) {
-  section.listing .element {
+  section.listing #longSongs .element, section.listing #mediumSongs .element, section.listing #shortSongs .element {
     font-size: 13px;
   }
 }
-section.listing .element * {
+section.listing #longSongs .element *, section.listing #mediumSongs .element *, section.listing #shortSongs .element * {
   width: 140px;
 }
-section.listing .element .track-number {
+section.listing #longSongs .element .track-number, section.listing #mediumSongs .element .track-number, section.listing #shortSongs .element .track-number {
   font-weight: 700;
 }
-section.listing .element .track-image {
+section.listing #longSongs .element .track-image, section.listing #mediumSongs .element .track-image, section.listing #shortSongs .element .track-image {
   width: 50px;
   border-radius: 10px;
 }
-section.listing .element .son-name {
+section.listing #longSongs .element .son-name, section.listing #mediumSongs .element .son-name, section.listing #shortSongs .element .son-name {
   margin-left: 15px;
 }
-section.listing .element .element-info {
+section.listing #longSongs .element .element-info, section.listing #mediumSongs .element .element-info, section.listing #shortSongs .element .element-info {
   display: flex;
   flex-direction: column;
 }
-section.listing .element .element-info .album-name {
+section.listing #longSongs .element .element-info .album-name, section.listing #mediumSongs .element .element-info .album-name, section.listing #shortSongs .element .element-info .album-name {
   color: #666;
 }
 

@@ -19,13 +19,13 @@ export async function initializeApp(): Promise<any> {
         const artists_long = await fetchTopArtist(accessToken, "long_term");
         const artists_medium = await fetchTopArtist(accessToken, "medium_term");
         const artists_short = await fetchTopArtist(accessToken, "short_term");
-        console.log(artists_long);
-        displayArtist(artists_long, "longArtist");
-        // displayArtist(tracks_medium, "mediumArtist");
-        // displayArtist(tracks_short, "shortArtist");
-        displayTracks(tracks_long, "longSong");
-        displayTracks(tracks_medium, "mediumSong");
-        displayTracks(tracks_short, "shortSong");
+        console.log(JSON.stringify(artists_long, null, 2));
+        displayArtists(artists_long, "longArtists");
+        // displayArtist(tracks_medium, "mediumArtists");
+        // displayArtist(tracks_short, "shortArtists");
+        displayTracks(tracks_long, "longSongs");
+        displayTracks(tracks_medium, "mediumSongs");
+        displayTracks(tracks_short, "shortSongs");
     }
 }
 
@@ -165,58 +165,26 @@ function displayTracks(tracks: Tracks, query: string) {
         queryDiv.appendChild(paragraph);
     }
 }
-function displayArtist(tracks: Tracks, query: string) {
+function displayArtists(artists: Artist[], query: string) {
     const queryDiv = document.getElementById(query);
-    console.log("queryDiv : ", queryDiv);
 
-    for (let i = 0; i < tracks.length; i++) {
-        const albumName = tracks[i].album.name;
-        const artistName = tracks[i].album.artists[0].name;
-        const sonName = tracks[i].name;
-        const artistSpotifyLink = tracks[i].album.artists[0].external_urls.spotify;
-        const sonSpotifyLink = tracks[i].external_urls.spotify;
-        const imageSrc = tracks[i].album.images[0].url;
-
-        // Création d'un élément <div> pour chaque élément avec la classe "element"
-        const paragraph = document.createElement('div');
-        paragraph.className = 'element';
-
-        const trackNumberSpan = document.createElement('span');
-        trackNumberSpan.innerText = `${i + 1}`;
-        trackNumberSpan.className = 'track-number';
-        paragraph.appendChild(trackNumberSpan);
-
-        // Création d'un élément <a> pour le nom du son
-        const sonNameLink = document.createElement('a');
-        sonNameLink.href = sonSpotifyLink;
-        sonNameLink.target = '_blank';
-        sonNameLink.innerText = sonName;
-        sonNameLink.className = 'son-name';
-        paragraph.appendChild(sonNameLink);
-
-        // Création d'un élément <a> pour l'image et le nom de l'artiste
+    for (let i = 0; i < artists.length; i++) {
+        const artist = artists[i];
         const artistLink = document.createElement('a');
-        artistLink.href = artistSpotifyLink;
+        artistLink.href = artist.external_urls.spotify;
         artistLink.target = '_blank';
-        artistLink.className = 'artist-link';
 
-        // Ajout de l'élément <img> pour l'image
-        const image = document.createElement('img');
-        image.src = imageSrc;
-        image.alt = sonName;
-        image.className = 'track-image';
-        artistLink.appendChild(image);
+        const artistImage = document.createElement('img');
+        artistImage.src = artist.images[0].url; // Assuming the first image is preferred
+        artistImage.alt = artist.name;
 
-        // Ajout de l'élément <span> pour le nom de l'artiste
-        const artistNameSpan = document.createElement('span');
-        artistNameSpan.innerText = artistName;
-        artistNameSpan.className = 'artist-name';
-        artistLink.appendChild(artistNameSpan);
+        const artistName = document.createElement('p');
+        artistName.textContent = artist.name;
 
-        // Ajout de l'élément <a> au paragraphe
-        paragraph.appendChild(artistLink);
+        artistLink.appendChild(artistImage);
+        artistLink.appendChild(artistName);
 
-        queryDiv.appendChild(paragraph);
+        queryDiv.appendChild(artistLink);
     }
 }
 

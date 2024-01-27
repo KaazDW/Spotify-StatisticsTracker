@@ -29,18 +29,18 @@
     </section>
 
     <section :style="{ display: displayLong ? 'block' : 'none' }" class="listing">
-      <div id="longArtist"></div>
-      <div id="longSong"></div>
+      <div id="longArtists"></div>
+      <div id="longSongs"></div>
     </section>
 
     <section :style="{ display: displayMedium ? 'block' : 'none' }" class="listing">
-      <div id="mediumArtist"></div>
-      <div id="mediumSong"></div>
+      <div id="mediumArtists"></div>
+      <div id="mediumSongs"></div>
     </section>
 
     <section :style="{ display: displayShort ? 'block' : 'none' }" class="listing">
-      <div id="shortArtist"></div>
-      <div id="shortSong"></div>
+      <div id="shortArtists"></div>
+      <div id="shortSongs"></div>
     </section>
   </div>
 </template>
