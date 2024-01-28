@@ -1,14 +1,5 @@
 <template>
   <div>
-<!--    <section id="profile">-->
-<!--      <RouterLink class="btn" to="/">Home<i class="bi bi-arrow-up-right-square-fill" style="color: var(&#45;&#45;color-black);"></i></RouterLink>-->
-<!--      <RouterLink class="btn" to="/login">Login<i class="bi bi-arrow-up-right-square-fill" style="color: var(&#45;&#45;color-black);"></i></RouterLink>-->
-<!--      <ul>-->
-<!--        <li>Logged in as <span id="displayName"></span></li>-->
-<!--        <li>Email: <span id="email"></span></li>-->
-<!--      </ul>-->
-<!--    </section>-->
-
     <header>
       <div class="user">
         <img id="profilePicture" src="#" />
@@ -46,36 +37,34 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { initializeApp} from '@/script.ts';
+  import { ref } from 'vue';
+  import { initializeApp} from '@/script.ts';
 
-initializeApp();
+  initializeApp();
 
-const displayLong = ref(true);
-const displayMedium = ref(false);
-const displayShort = ref(false);
+  const displayLong = ref(true);
+  const displayMedium = ref(false);
+  const displayShort = ref(false);
 
-const displaySection = (section) => {
-  displayLong.value = false;
-  displayMedium.value = false;
-  displayShort.value = false;
+  const displaySection = (section) => {
+    displayLong.value = false;
+    displayMedium.value = false;
+    displayShort.value = false;
 
-  if (section === 'long') {
-    displayLong.value = true;
-  } else if (section === 'medium') {
-    displayMedium.value = true;
-  } else if (section === 'short') {
-    displayShort.value = true;
-  }
-};
-const activeButton = ref('home');
+    if (section === 'long') {
+      displayLong.value = true;
+    } else if (section === 'medium') {
+      displayMedium.value = true;
+    } else if (section === 'short') {
+      displayShort.value = true;
+    }
+  };
+  const activeButton = ref('home');
 
-const setActiveButton = (button) => {
-  activeButton.value = button;
-  displaySection(button);
-};
-setActiveButton('long');
+  const setActiveButton = (button) => {
+    activeButton.value = button;
+    displaySection(button);
+  };
+  setActiveButton('long');
 </script>
 
-<style scoped>
-</style>
