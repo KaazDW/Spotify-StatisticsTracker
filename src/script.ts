@@ -18,13 +18,13 @@ export async function initializeApp(): Promise<any> {
         const artists_medium = await fetchTopArtist(accessToken, "medium_term");
         const artists_short = await fetchTopArtist(accessToken, "short_term");
         console.log(JSON.stringify(artists_long, null, 2));
-        displayProfile(profile);
-        displayArtists(artists_long, "longArtists");
-        displayArtists(artists_medium, "mediumArtists");
-        displayArtists(artists_short, "shortArtists");
-        displayTracks(tracks_long, "longSongs");
-        displayTracks(tracks_medium, "mediumSongs");
-        displayTracks(tracks_short, "shortSongs");
+        displayProfile({profile: profile});
+        displayArtists({artists: artists_long, query: "longArtists"});
+        displayArtists({artists: artists_medium, query: "mediumArtists"});
+        displayArtists({artists: artists_short, query: "shortArtists"});
+        displayTracks({tracks: tracks_long, query: "longSongs"});
+        displayTracks({tracks: tracks_medium, query: "mediumSongs"});
+        displayTracks({tracks: tracks_short, query: "shortSongs"});
     }
 }
 
@@ -101,13 +101,13 @@ async function fetchCurrentlyPlaying(code: string) {
     return data;
 }
 
-function displayProfile(profile: UserProfile) {
+function displayProfile({profile}: { profile: any }) {
     document.getElementById("displayName")!.innerText = profile.display_name;
     document.getElementById("profilePicture")!.setAttribute("src", profile.images[1].url);
     document.getElementById("email")!.innerText = profile.email;
 }
 
-function displayTracks(tracks: Tracks, query: string) {
+function displayTracks({tracks, query}: { tracks: any, query: string }) {
     const queryDiv = document.getElementById(query);
     for (let i = 0; i < tracks.length; i++) {
         const albumName = tracks[i].album.name;
@@ -158,7 +158,7 @@ function displayTracks(tracks: Tracks, query: string) {
 
     }
 }
-function displayArtists(artists: Artist[], query: string) {
+function displayArtists({artists, query}: { artists: any, query: string }) {
     const queryDiv = document.getElementById(query);
     console.log("artists.length ", artists.length);
     for (let i = 0; i < artists.length; i++) {
