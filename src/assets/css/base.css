@@ -105,9 +105,7 @@ body {
 }
 
 header {
-  margin-bottom: 10px;
-  margin-top: 30px;
-  margin: 30px 20px 10px 20px;
+  margin: 30px 20px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -195,7 +193,7 @@ section.listing #longSongs .element, section.listing #mediumSongs .element, sect
   border-radius: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: 40px 50px repeat(2, auto);
+  grid-template-columns: 30px 50px repeat(2, auto);
   font-size: 15px;
 }
 @media (max-width: 1300px) {
@@ -208,6 +206,7 @@ section.listing #longSongs .element *, section.listing #mediumSongs .element *, 
 }
 section.listing #longSongs .element .track-number, section.listing #mediumSongs .element .track-number, section.listing #shortSongs .element .track-number {
   font-weight: 700;
+  width: 1px;
 }
 section.listing #longSongs .element .track-image, section.listing #mediumSongs .element .track-image, section.listing #shortSongs .element .track-image {
   width: 50px;
