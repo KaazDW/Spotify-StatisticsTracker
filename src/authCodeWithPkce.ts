@@ -1,3 +1,4 @@
+
 export async function redirectToAuthCodeFlow(clientId: string) {
     const verifier = generateCodeVerifier(128);
     const challenge = await generateCodeChallenge(verifier);
@@ -11,7 +12,6 @@ export async function redirectToAuthCodeFlow(clientId: string) {
     params.append("scope", "user-read-private user-read-email user-top-read");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
-    console.log(`https://accounts.spotify.com/authorize?${params.toString()}`);
 
     document.location = `https://accounts.spotify.com/authorize?${params.toString()}`;
 }
@@ -33,8 +33,10 @@ export async function getAccessToken(clientId: string, code: string) {
     });
 
     const { access_token } = await result.json();
+    document.cookie = `access_token=${access_token}; path=/; max-age=100`; //
     return access_token;
 }
+
 
 function generateCodeVerifier(length: number) {
     let text = '';

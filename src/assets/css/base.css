@@ -201,7 +201,7 @@ section.listing #longSongs .element, section.listing #mediumSongs .element, sect
   }
 }
 section.listing #longSongs .element *, section.listing #mediumSongs .element *, section.listing #shortSongs .element * {
-  width: 110px;
+  width: 140px;
 }
 section.listing #longSongs .element .track-number, section.listing #mediumSongs .element .track-number, section.listing #shortSongs .element .track-number {
   font-weight: 700;

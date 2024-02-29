@@ -1,31 +1,45 @@
 import { redirectToAuthCodeFlow, getAccessToken } from "./authCodeWithPkce";
 
-const clientId = "4d47f7f7b6234523bba1a4aa4824f505";
-
+const clientId  = "4d47f7f7b6234523bba1a4aa4824f505";
+export function checkAccessToken() {
+    const cookies = document.cookie.split('; ');
+    const accessTokenCookie = cookies.find(row => row.startsWith('access_token='));
+    if (!accessTokenCookie) {
+        redirectToAuthCodeFlow(clientId);
+    } else {
+        const access_token = accessTokenCookie.split('=')[1];
+        return access_token;
+    }
+}
 export async function initializeApp(): Promise<any> {
+
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
     console.log("location : ", window.location.origin);
+
     if (!code) {
-        await redirectToAuthCodeFlow(clientId);
-    } else {
-        const accessToken = await getAccessToken(clientId, code);
-        const profile = await fetchProfile(accessToken);
-        const tracks_long = await fetchTopTrack(accessToken, "long_term");
-        const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
-        const tracks_short = await fetchTopTrack(accessToken, "short_term");
-        const artists_long = await fetchTopArtist(accessToken, "long_term");
-        const artists_medium = await fetchTopArtist(accessToken, "medium_term");
-        const artists_short = await fetchTopArtist(accessToken, "short_term");
-        console.log(JSON.stringify(artists_long, null, 2));
-        displayProfile({profile: profile});
-        displayArtists({artists: artists_long, query: "longArtists"});
-        displayArtists({artists: artists_medium, query: "mediumArtists"});
-        displayArtists({artists: artists_short, query: "shortArtists"});
-        displayTracks({tracks: tracks_long, query: "longSongs"});
-        displayTracks({tracks: tracks_medium, query: "mediumSongs"});
-        displayTracks({tracks: tracks_short, query: "shortSongs"});
+        redirectToAuthCodeFlow(clientId);
+        return;
     }
+
+    !checkAccessToken()
+
+    const accessToken = await getAccessToken(clientId, code);
+    const profile = await fetchProfile(accessToken);
+    const tracks_long = await fetchTopTrack(accessToken, "long_term");
+    const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
+    const tracks_short = await fetchTopTrack(accessToken, "short_term");
+    const artists_long = await fetchTopArtist(accessToken, "long_term");
+    const artists_medium = await fetchTopArtist(accessToken, "medium_term");
+    const artists_short = await fetchTopArtist(accessToken, "short_term");
+    console.log(JSON.stringify(artists_long, null, 2));
+    displayProfile({profile: profile});
+    displayArtists({artists: artists_long, query: "longArtists"});
+    displayArtists({artists: artists_medium, query: "mediumArtists"});
+    displayArtists({artists: artists_short, query: "shortArtists"});
+    displayTracks({tracks: tracks_long, query: "longSongs"});
+    displayTracks({tracks: tracks_medium, query: "mediumSongs"});
+    displayTracks({tracks: tracks_short, query: "shortSongs"});
 }
 
 async function fetchProfile(code: string) {
@@ -103,7 +117,12 @@ async function fetchCurrentlyPlaying(code: string) {
 
 function displayProfile({profile}: { profile: any }) {
     document.getElementById("displayName")!.innerText = profile.display_name;
-    document.getElementById("profilePicture")!.setAttribute("src", profile.images[1].url);
+    try {
+        document.getElementById("profilePicture")!.setAttribute("src", profile.images[1].url);
+    } catch (error) {
+        console.error("An error occurred while setting the profile picture: ", error);
+        redirectToAuthCodeFlow(clientId);
+    }
     document.getElementById("email")!.innerText = profile.email;
 }
 
@@ -209,6 +228,15 @@ function displayArtists({artists, query}: { artists: any, query: string }) {
     }
 }
 
-
-
-
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log('test')
+    const disconnectButton = document.getElementById("disconnect");
+    if (disconnectButton) {
+        disconnectButton.addEventListener("click", () => {
+            document.cookie = `access_token=; path=/; max-age=0`;
+            window.location.href = "/";
+        });
+    } else {
+        console.error('Element with id "disconnect" not found');
+    }
+});

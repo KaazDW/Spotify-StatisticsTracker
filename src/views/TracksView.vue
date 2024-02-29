@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="links">
-        <RouterLink class="btn" to="/">Home</RouterLink>
+        <RouterLink class="btn" to="/">Disconnect</RouterLink>
         <RouterLink class="btn" to="/login">Refresh</RouterLink>
       </div>
     </header>
