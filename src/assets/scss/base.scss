@@ -179,7 +179,7 @@ section.listing {
         width: 100px;
         height: 100px;
         object-fit: cover;
-        border-radius: 15px;
+        //border-radius: 15px;
       }
       p {
         font-size: 13px;
@@ -198,21 +198,24 @@ section.listing {
       border-radius: 10px;
       align-items: center;
       display: grid;
-      grid-template-columns: 30px 50px repeat(2, auto);
+      grid-template-columns: 30px 50px repeat(2, auto) 40px;
       font-size: 15px;
       @media (max-width: 1300px) {
         font-size: 13px;
       }
       * {
-        width: 140px;
+        width: 110px;
       }
       .track-number {
         font-weight: 700;
         width: 1px;
       }
+      .spotify-logo{
+        width: 30px;
+      }
       .track-image {
         width: 50px;
-        border-radius: 10px;
+        //border-radius: 10px;
       }
       .son-name {
         margin-left: 15px;

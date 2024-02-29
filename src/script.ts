@@ -153,9 +153,22 @@ function displayTracks({tracks, query}: { tracks: any, query: string }) {
         albumNameSpan.className = 'album-name';
         artistAndAlbumDiv.appendChild(albumNameSpan);
 
-        paragraph.appendChild(artistAndAlbumDiv);
-        if(queryDiv) queryDiv.appendChild(paragraph);
+        // Create a link to the song's Spotify page with the Spotify logo as its content
+        const spotifyLogoLink = document.createElement('a');
+        spotifyLogoLink.href = sonSpotifyLink;
+        spotifyLogoLink.target = '_blank';
 
+        const spotifyLogoImg = document.createElement('img');
+        spotifyLogoImg.src = 'public/spotify.svg'; // replace with the actual path to your Spotify logo SVG file
+        spotifyLogoImg.alt = 'Spotify logo';
+        spotifyLogoImg.className = 'spotify-logo';
+
+        spotifyLogoLink.appendChild(spotifyLogoImg);
+
+        paragraph.appendChild(artistAndAlbumDiv);
+        paragraph.appendChild(spotifyLogoLink);
+
+        if(queryDiv) queryDiv.appendChild(paragraph);
     }
 }
 function displayArtists({artists, query}: { artists: any, query: string }) {

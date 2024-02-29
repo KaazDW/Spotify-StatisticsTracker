@@ -178,7 +178,6 @@ section.listing #longArtists a img, section.listing #mediumArtists a img, sectio
   width: 100px;
   height: 100px;
   object-fit: cover;
-  border-radius: 15px;
 }
 section.listing #longArtists a p, section.listing #mediumArtists a p, section.listing #shortArtists a p {
   font-size: 13px;
@@ -193,7 +192,7 @@ section.listing #longSongs .element, section.listing #mediumSongs .element, sect
   border-radius: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: 30px 50px repeat(2, auto);
+  grid-template-columns: 30px 50px repeat(2, auto) 40px;
   font-size: 15px;
 }
 @media (max-width: 1300px) {
@@ -202,15 +201,17 @@ section.listing #longSongs .element, section.listing #mediumSongs .element, sect
   }
 }
 section.listing #longSongs .element *, section.listing #mediumSongs .element *, section.listing #shortSongs .element * {
-  width: 140px;
+  width: 110px;
 }
 section.listing #longSongs .element .track-number, section.listing #mediumSongs .element .track-number, section.listing #shortSongs .element .track-number {
   font-weight: 700;
   width: 1px;
 }
+section.listing #longSongs .element .spotify-logo, section.listing #mediumSongs .element .spotify-logo, section.listing #shortSongs .element .spotify-logo {
+  width: 30px;
+}
 section.listing #longSongs .element .track-image, section.listing #mediumSongs .element .track-image, section.listing #shortSongs .element .track-image {
   width: 50px;
-  border-radius: 10px;
 }
 section.listing #longSongs .element .son-name, section.listing #mediumSongs .element .son-name, section.listing #shortSongs .element .son-name {
   margin-left: 15px;
