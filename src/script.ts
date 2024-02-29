@@ -17,11 +17,6 @@ export async function initializeApp(): Promise<any> {
     const code = params.get("code");
     console.log("location : ", window.location.origin);
 
-    if (!code) {
-        redirectToAuthCodeFlow(clientId);
-        return;
-    }
-
     !checkAccessToken()
 
     const accessToken = await getAccessToken(clientId, code);
