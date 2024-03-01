@@ -14,30 +14,29 @@ export function checkAccessToken() {
 export async function initializeApp(): Promise<any> {
 
     const params = new URLSearchParams(window.location.search);
-    let code = params.get("code");
-    if (code === null) {
+    const code = params.get("code");
+
+    if (!code) {
         redirectToAuthCodeFlow(clientId);
         return;
     }
 
-    if (checkAccessToken()) {
-        const accessToken = await getAccessToken(clientId, code);
-        const profile = await fetchProfile(accessToken);
-        displayProfile({profile: profile});
-        const tracks_long = await fetchTopTrack(accessToken, "long_term");
-        const artists_long = await fetchTopArtist(accessToken, "long_term");
-        displayArtists({artists: artists_long, query: "longArtists"});
-        displayTracks({tracks: tracks_long, query: "longSongs"});
-        const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
-        const artists_medium = await fetchTopArtist(accessToken, "medium_term");
-        displayArtists({artists: artists_medium, query: "mediumArtists"});
-        displayTracks({tracks: tracks_medium, query: "mediumSongs"});
-        const tracks_short = await fetchTopTrack(accessToken, "short_term");
-        const artists_short = await fetchTopArtist(accessToken, "short_term");
-        displayArtists({artists: artists_short, query: "shortArtists"});
-        displayTracks({tracks: tracks_short, query: "shortSongs"});
-        // console.log(JSON.stringify(artists_long, null, 2));
-    }
+    const accessToken = await getAccessToken(clientId, code);
+    const profile = await fetchProfile(accessToken);
+    displayProfile({profile: profile});
+    const tracks_long = await fetchTopTrack(accessToken, "long_term");
+    const artists_long = await fetchTopArtist(accessToken, "long_term");
+    displayArtists({artists: artists_long, query: "longArtists"});
+    displayTracks({tracks: tracks_long, query: "longSongs"});
+    const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
+    const artists_medium = await fetchTopArtist(accessToken, "medium_term");
+    displayArtists({artists: artists_medium, query: "mediumArtists"});
+    displayTracks({tracks: tracks_medium, query: "mediumSongs"});
+    const tracks_short = await fetchTopTrack(accessToken, "short_term");
+    const artists_short = await fetchTopArtist(accessToken, "short_term");
+    displayArtists({artists: artists_short, query: "shortArtists"});
+    displayTracks({tracks: tracks_short, query: "shortSongs"});
+    // console.log(JSON.stringify(artists_long, null, 2));
 }
 
 async function fetchProfile(code: string) {
@@ -49,7 +48,7 @@ async function fetchProfile(code: string) {
     });
 
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
     return data;
 }
 
@@ -66,7 +65,7 @@ async function fetchTopTrack(code: string, time: string) {
         const data = await result.json();
         TopTracks = TopTracks .concat(data.items);
     }
-    console.log("TopTracks : ", time, " : ", TopTracks);
+    // console.log("TopTracks : ", time, " : ", TopTracks);
     return TopTracks;
 }
 
@@ -83,7 +82,7 @@ async function fetchTopArtist(code: string, time: string) {
         const data = await result.json();
         TopArtists = TopArtists .concat(data.items);
     }
-    console.log("TopArtists : ", time, " : ", TopArtists);
+    // console.log("TopArtists : ", time, " : ", TopArtists);
     return TopArtists;
 }
 
@@ -109,7 +108,7 @@ async function fetchCurrentlyPlaying(code: string) {
         throw new Error("Empty response from Spotify API");
     }
 
-    console.log("CurrentPlay : ", data);
+    // console.log("CurrentPlay : ", data);
     return data;
 }
 
@@ -176,7 +175,8 @@ function displayTracks({tracks, query}: { tracks: any, query: string }) {
         spotifyLogoLink.target = '_blank';
 
         const spotifyLogoImg = document.createElement('img');
-        spotifyLogoImg.src = 'public/spotify.svg'; // replace with the actual path to your Spotify logo SVG file
+
+        spotifyLogoImg.src = 'public/spotify.svg';
         spotifyLogoImg.alt = 'Spotify logo';
         spotifyLogoImg.className = 'spotify-logo';
 
@@ -190,7 +190,6 @@ function displayTracks({tracks, query}: { tracks: any, query: string }) {
 }
 function displayArtists({artists, query}: { artists: any, query: string }) {
     const queryDiv = document.getElementById(query);
-    console.log("artists.length ", artists.length);
     for (let i = 0; i < artists.length; i++) {
         if (!artists[i] || !artists[i].external_urls || !artists[i].images || artists[i].images.length < 3 || !artists[i].name) {
             console.error(`Artiste invalide à l'indice ${i}`);
@@ -202,7 +201,6 @@ function displayArtists({artists, query}: { artists: any, query: string }) {
         artistLink.target = '_blank';
 
         const artistImage = document.createElement('img');
-
         if (artists[i].images[2]) {
             artistImage.src = artists[i].images[2].url;
             artistImage.alt = artists[i].name;
@@ -210,31 +208,28 @@ function displayArtists({artists, query}: { artists: any, query: string }) {
             console.error(`L'artiste ${artists[i].name} n'a pas d'image disponible.`);
         }
 
-        const artistName = document.createElement('p');
+        const artistDiv = document.createElement('div');
 
+        const spotifyLogoImg = document.createElement('img');
+        spotifyLogoImg.src = 'public/spotify.svg';
+        spotifyLogoImg.alt = 'Spotify logo';
+        spotifyLogoImg.className = 'spotify-logo';
+
+        artistDiv.appendChild(spotifyLogoImg);
         const artistNumberSpan = document.createElement('span');
         artistNumberSpan.innerText = `${i + 1}. `;
         artistNumberSpan.className = 'artist-number';
-        artistName.appendChild(artistNumberSpan);
+        artistDiv.appendChild(artistNumberSpan);
 
-        artistName.textContent += artists[i].name;
+        const artistNameSpan = document.createElement('span');
+        artistNameSpan.textContent = artists[i].name;
+        artistDiv.appendChild(artistNameSpan);
+
+
 
         artistLink.appendChild(artistImage);
-        artistLink.appendChild(artistName);
+        artistLink.appendChild(artistDiv);
 
         if(queryDiv) queryDiv.appendChild(artistLink);
     }
 }
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    console.log('test')
-    const disconnectButton = document.getElementById("disconnect");
-    if (disconnectButton) {
-        disconnectButton.addEventListener("click", () => {
-            document.cookie = `access_token=; path=/; max-age=0`;
-            window.location.href = "/";
-        });
-    } else {
-        console.error('Element with id "disconnect" not found');
-    }
-});

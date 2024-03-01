@@ -179,10 +179,21 @@ section.listing #longArtists a img, section.listing #mediumArtists a img, sectio
   height: 100px;
   object-fit: cover;
 }
-section.listing #longArtists a p, section.listing #mediumArtists a p, section.listing #shortArtists a p {
+section.listing #longArtists div {
+  display: flex;
   font-size: 13px;
-  color: grey;
   font-style: italic;
+}
+section.listing #longArtists div span {
+  color: grey;
+}
+section.listing #longArtists div .spotify-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+section.listing #longArtists div .artist-number {
+  margin-right: 5px;
 }
 section.listing #longSongs .element, section.listing #mediumSongs .element, section.listing #shortSongs .element {
   background-color: #222;

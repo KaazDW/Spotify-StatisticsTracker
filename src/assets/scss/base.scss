@@ -181,10 +181,24 @@ section.listing {
         object-fit: cover;
         //border-radius: 15px;
       }
-      p {
-        font-size: 13px;
+    }
+  }
+  #longArtists{
+    div{
+      display: flex;
+      font-size: 13px;
+      font-style: italic;
+      span{
         color: grey;
-        font-style: italic;
+      }
+      .spotify-logo{
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+      .artist-number{
+        margin-right: 5px;
+
       }
     }
   }
