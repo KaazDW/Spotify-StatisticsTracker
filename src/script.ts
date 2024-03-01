@@ -173,6 +173,7 @@ function displayTracks({tracks, query}: { tracks: any, query: string }) {
         const spotifyLogoLink = document.createElement('a');
         spotifyLogoLink.href = sonSpotifyLink;
         spotifyLogoLink.target = '_blank';
+        spotifyLogoLink.className = 'spotify-logo-link';
 
         const spotifyLogoImg = document.createElement('img');
         spotifyLogoImg.src = 'https://raw.githubusercontent.com/KaazDW/Spotify-Stats-Tracks/main/public/spotify.svg';
