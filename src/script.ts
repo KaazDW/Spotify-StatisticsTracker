@@ -175,8 +175,7 @@ function displayTracks({tracks, query}: { tracks: any, query: string }) {
         spotifyLogoLink.target = '_blank';
 
         const spotifyLogoImg = document.createElement('img');
-
-        spotifyLogoImg.src = 'public/spotify.svg';
+        spotifyLogoImg.src = '@/spotify.svg';
         spotifyLogoImg.alt = 'Spotify logo';
         spotifyLogoImg.className = 'spotify-logo';
 
