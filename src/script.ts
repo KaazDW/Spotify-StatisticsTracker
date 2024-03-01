@@ -14,27 +14,30 @@ export function checkAccessToken() {
 export async function initializeApp(): Promise<any> {
 
     const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-    console.log("location : ", window.location.origin);
+    let code = params.get("code");
+    if (code === null) {
+        redirectToAuthCodeFlow(clientId);
+        return;
+    }
 
-    !checkAccessToken()
-
-    const accessToken = await getAccessToken(clientId, code);
-    const profile = await fetchProfile(accessToken);
-    const tracks_long = await fetchTopTrack(accessToken, "long_term");
-    const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
-    const tracks_short = await fetchTopTrack(accessToken, "short_term");
-    const artists_long = await fetchTopArtist(accessToken, "long_term");
-    const artists_medium = await fetchTopArtist(accessToken, "medium_term");
-    const artists_short = await fetchTopArtist(accessToken, "short_term");
-    console.log(JSON.stringify(artists_long, null, 2));
-    displayProfile({profile: profile});
-    displayArtists({artists: artists_long, query: "longArtists"});
-    displayArtists({artists: artists_medium, query: "mediumArtists"});
-    displayArtists({artists: artists_short, query: "shortArtists"});
-    displayTracks({tracks: tracks_long, query: "longSongs"});
-    displayTracks({tracks: tracks_medium, query: "mediumSongs"});
-    displayTracks({tracks: tracks_short, query: "shortSongs"});
+    if (checkAccessToken()) {
+        const accessToken = await getAccessToken(clientId, code);
+        const profile = await fetchProfile(accessToken);
+        displayProfile({profile: profile});
+        const tracks_long = await fetchTopTrack(accessToken, "long_term");
+        const artists_long = await fetchTopArtist(accessToken, "long_term");
+        displayArtists({artists: artists_long, query: "longArtists"});
+        displayTracks({tracks: tracks_long, query: "longSongs"});
+        const tracks_medium = await fetchTopTrack(accessToken, "medium_term");
+        const artists_medium = await fetchTopArtist(accessToken, "medium_term");
+        displayArtists({artists: artists_medium, query: "mediumArtists"});
+        displayTracks({tracks: tracks_medium, query: "mediumSongs"});
+        const tracks_short = await fetchTopTrack(accessToken, "short_term");
+        const artists_short = await fetchTopArtist(accessToken, "short_term");
+        displayArtists({artists: artists_short, query: "shortArtists"});
+        displayTracks({tracks: tracks_short, query: "shortSongs"});
+        // console.log(JSON.stringify(artists_long, null, 2));
+    }
 }
 
 async function fetchProfile(code: string) {

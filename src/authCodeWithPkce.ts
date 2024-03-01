@@ -55,10 +55,8 @@ async function generateCodeChallenge(codeVerifier: string) {
     const digest = await window.crypto.subtle.digest('SHA-256', data);
 
     // Utilisez Array.from pour convertir le tableau d'octets en une chaîne
-    const base64Url = btoa(String.fromCharCode(...Array.from(new Uint8Array(digest))))
+    return btoa(String.fromCharCode(...Array.from(new Uint8Array(digest))))
         .replace(/\+/g, '-')
         .replace(/\//g, '_')
         .replace(/=+$/, '');
-
-    return base64Url;
 }
