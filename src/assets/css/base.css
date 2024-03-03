@@ -212,7 +212,7 @@ section.listing #longSongs .element, section.listing #mediumSongs .element, sect
   }
 }
 section.listing #longSongs .element *, section.listing #mediumSongs .element *, section.listing #shortSongs .element * {
-  width: 140px;
+  width: 105px;
 }
 section.listing #longSongs .element .track-number, section.listing #mediumSongs .element .track-number, section.listing #shortSongs .element .track-number {
   font-weight: 700;
@@ -232,6 +232,7 @@ section.listing #longSongs .element .son-name, section.listing #mediumSongs .ele
 }
 section.listing #longSongs .element .element-info, section.listing #mediumSongs .element .element-info, section.listing #shortSongs .element .element-info {
   display: flex;
+  width: 100px;
   flex-direction: column;
 }
 section.listing #longSongs .element .element-info .album-name, section.listing #mediumSongs .element .element-info .album-name, section.listing #shortSongs .element .element-info .album-name {

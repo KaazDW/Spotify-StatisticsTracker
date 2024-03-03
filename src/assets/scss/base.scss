@@ -218,7 +218,7 @@ section.listing {
         font-size: 13px;
       }
       * {
-        width: 140px;
+        width: 105px;
       }
       .track-number {
         font-weight: 700;
@@ -239,6 +239,7 @@ section.listing {
       }
       .element-info {
         display: flex;
+        width: 100px;
         flex-direction: column;
         .album-name {
           color: #666;
