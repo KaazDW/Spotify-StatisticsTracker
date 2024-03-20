@@ -181,9 +181,14 @@ section.listing {
         object-fit: cover;
         //border-radius: 15px;
       }
+      .spotify-logo-artist{
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
     }
   }
-  #longArtists{
+  #longArtists, #mediumArtists, #shortArtists {
     div{
       display: flex;
       font-size: 13px;
@@ -198,7 +203,6 @@ section.listing {
       }
       .artist-number{
         margin-right: 5px;
-
       }
     }
   }
@@ -226,6 +230,7 @@ section.listing {
       }
       .spotify-logo{
         width: 30px;
+        height: 30px;
       }
       .spotify-logo-link{
         width: auto;

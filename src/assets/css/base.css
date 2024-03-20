@@ -179,20 +179,25 @@ section.listing #longArtists a img, section.listing #mediumArtists a img, sectio
   height: 100px;
   object-fit: cover;
 }
-section.listing #longArtists div {
-  display: flex;
-  font-size: 13px;
-  font-style: italic;
-}
-section.listing #longArtists div span {
-  color: grey;
-}
-section.listing #longArtists div .spotify-logo {
+section.listing #longArtists a .spotify-logo-artist, section.listing #mediumArtists a .spotify-logo-artist, section.listing #shortArtists a .spotify-logo-artist {
   width: 20px;
   height: 20px;
   margin-right: 5px;
 }
-section.listing #longArtists div .artist-number {
+section.listing #longArtists div, section.listing #mediumArtists div, section.listing #shortArtists div {
+  display: flex;
+  font-size: 13px;
+  font-style: italic;
+}
+section.listing #longArtists div span, section.listing #mediumArtists div span, section.listing #shortArtists div span {
+  color: grey;
+}
+section.listing #longArtists div .spotify-logo, section.listing #mediumArtists div .spotify-logo, section.listing #shortArtists div .spotify-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+section.listing #longArtists div .artist-number, section.listing #mediumArtists div .artist-number, section.listing #shortArtists div .artist-number {
   margin-right: 5px;
 }
 section.listing #longSongs .element, section.listing #mediumSongs .element, section.listing #shortSongs .element {
@@ -220,6 +225,7 @@ section.listing #longSongs .element .track-number, section.listing #mediumSongs 
 }
 section.listing #longSongs .element .spotify-logo, section.listing #mediumSongs .element .spotify-logo, section.listing #shortSongs .element .spotify-logo {
   width: 30px;
+  height: 30px;
 }
 section.listing #longSongs .element .spotify-logo-link, section.listing #mediumSongs .element .spotify-logo-link, section.listing #shortSongs .element .spotify-logo-link {
   width: auto;

@@ -213,7 +213,7 @@ function displayArtists({artists, query}: { artists: any, query: string }) {
         const spotifyLogoImg = document.createElement('img');
         spotifyLogoImg.src = 'https://raw.githubusercontent.com/KaazDW/Spotify-Stats-Tracks/main/public/spotify.svg';
         spotifyLogoImg.alt = 'Spotify logo';
-        spotifyLogoImg.className = 'spotify-logo';
+        spotifyLogoImg.className = 'spotify-logo-artist';
 
         artistDiv.appendChild(spotifyLogoImg);
         const artistNumberSpan = document.createElement('span');
