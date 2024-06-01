@@ -13,6 +13,7 @@
         <RouterLink class="btn" to="/login">Refresh</RouterLink>
       </div>
     </header>
+
     <section class="nav">
       <button @click="setActiveButton('long')" :class="{ active: activeButton === 'long' }">All time</button>
       <button @click="setActiveButton('medium')" :class="{ active: activeButton === 'medium' }">6 months</button>

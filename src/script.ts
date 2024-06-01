@@ -54,16 +54,16 @@ async function fetchProfile(code: string) {
 
 async function fetchTopTrack(code: string, time: string) {
     let TopTracks: any[] = [];
-     
-    for(let i=0; i<2; i++){
-        const result = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=50&offset=0&time_range=" + time, {
+
+    for (let i = 0; i < 2; i++) {
+        const result = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=50&offset=${i * 50}&time_range=` + time, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${code}`
             }
         });
         const data = await result.json();
-        TopTracks = TopTracks .concat(data.items);
+        TopTracks = TopTracks.concat(data.items);
     }
     // console.log("TopTracks : ", time, " : ", TopTracks);
     return TopTracks;
@@ -71,8 +71,8 @@ async function fetchTopTrack(code: string, time: string) {
 
 async function fetchTopArtist(code: string, time: string) {
     let TopArtists: any[] = [];
-     
-    for(let i=0; i<1; i++){
+
+    for (let i = 0; i < 1; i++) {
         const result = await fetch("https://api.spotify.com/v1/me/top/artists?limit=20&offset=0&time_range=" + time, {
             method: "GET",
             headers: {
@@ -80,7 +80,7 @@ async function fetchTopArtist(code: string, time: string) {
             }
         });
         const data = await result.json();
-        TopArtists = TopArtists .concat(data.items);
+        TopArtists = TopArtists.concat(data.items);
     }
     // console.log("TopArtists : ", time, " : ", TopArtists);
     return TopArtists;
@@ -188,6 +188,7 @@ function displayTracks({tracks, query}: { tracks: any, query: string }) {
         if(queryDiv) queryDiv.appendChild(paragraph);
     }
 }
+
 function displayArtists({artists, query}: { artists: any, query: string }) {
     const queryDiv = document.getElementById(query);
     for (let i = 0; i < artists.length; i++) {
@@ -224,8 +225,6 @@ function displayArtists({artists, query}: { artists: any, query: string }) {
         const artistNameSpan = document.createElement('span');
         artistNameSpan.textContent = artists[i].name;
         artistDiv.appendChild(artistNameSpan);
-
-
 
         artistLink.appendChild(artistImage);
         artistLink.appendChild(artistDiv);
