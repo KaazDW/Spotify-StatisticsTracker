@@ -154,20 +154,17 @@ function displayTracks({tracks, query}: { tracks: any, query: string }) {
         sonNameLink.className = 'son-name';
         paragraph.appendChild(sonNameLink);
 
-        const artistAndAlbumDiv = document.createElement('div');
-        artistAndAlbumDiv.className = 'element-info';
-
         const artistNameLink = document.createElement('a');
         artistNameLink.href = artistSpotifyLink;
         artistNameLink.target = '_blank';
         artistNameLink.innerText = artistName;
         artistNameLink.className = 'artist-name';
-        artistAndAlbumDiv.appendChild(artistNameLink);
+        paragraph.appendChild(artistNameLink);
 
         const albumNameSpan = document.createElement('span');
         albumNameSpan.innerText = albumName;
         albumNameSpan.className = 'album-name';
-        artistAndAlbumDiv.appendChild(albumNameSpan);
+        paragraph.appendChild(albumNameSpan);
 
         // Create a link to the song's Spotify page with the Spotify logo as its content
         const spotifyLogoLink = document.createElement('a');
@@ -182,7 +179,6 @@ function displayTracks({tracks, query}: { tracks: any, query: string }) {
 
         spotifyLogoLink.appendChild(spotifyLogoImg);
 
-        paragraph.appendChild(artistAndAlbumDiv);
         paragraph.appendChild(spotifyLogoLink);
 
         if(queryDiv) queryDiv.appendChild(paragraph);

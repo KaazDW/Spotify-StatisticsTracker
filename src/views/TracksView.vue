@@ -1,6 +1,10 @@
 <template>
   <div>
     <header>
+      <h1>Stats-Tracks</h1>
+      <h3>See your Spotify Listening Statistics</h3>
+    </header>
+    <section class="profile">
       <div class="user">
         <img id="profilePicture" src="#" />
         <div class="infos">
@@ -9,15 +13,18 @@
         </div>
       </div>
       <div class="links">
-        <RouterLink class="btn" to="/">Disconnect</RouterLink>
-        <RouterLink class="btn" to="/login">Refresh</RouterLink>
+        <RouterLink class="btn" to="/">Log Out</RouterLink>
+        <a href="" class="btn">See the project on Github <i class="bi bi-box-arrow-in-up-right"></i></a>
       </div>
-    </header>
+    </section>
 
     <section class="nav">
-      <button @click="setActiveButton('long')" :class="{ active: activeButton === 'long' }">All time</button>
-      <button @click="setActiveButton('medium')" :class="{ active: activeButton === 'medium' }">6 months</button>
-      <button @click="setActiveButton('short')" :class="{ active: activeButton === 'short' }">Last month</button>
+      <p>Select your data period</p>
+      <div>
+        <button @click="setActiveButton('long')" class="btn" :class="{ active: activeButton === 'long' }">All time</button>
+        <button @click="setActiveButton('medium')" class="btn" :class="{ active: activeButton === 'medium' }">6 months</button>
+        <button @click="setActiveButton('short')" class="btn" :class="{ active: activeButton === 'short' }">Last month</button>
+      </div>
     </section>
 
     <section :style="{ display: displayLong ? 'block' : 'none' }" class="listing">
