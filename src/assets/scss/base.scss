@@ -97,6 +97,7 @@ section.profile{
       p#email{
         font-size: 17px;
         color: #999;
+        display: none;
       }
     }
   }
@@ -163,9 +164,12 @@ section.listing{
     div{
       align-items: center;
       display: grid;
-      grid-template-columns: 30px 50px 250px 200px auto 30px;
+      grid-template-columns: 30px 50px 250px 200px auto 35px;
       border-bottom: 1px solid #333;
       padding: 10px 0;
+      .track-number{
+        margin-left: 8px;
+      }
       img{
         height: 40px;
       }

@@ -88,6 +88,7 @@ section.profile .user .infos h3#displayName {
 section.profile .user .infos p#email {
   font-size: 17px;
   color: #999;
+  display: none;
 }
 section.profile .links {
   display: flex;
@@ -152,9 +153,12 @@ section.listing #longArtists, section.listing #mediumArtists, section.listing #s
 section.listing #longSongs div, section.listing #mediumSongs div, section.listing #shortSongs div {
   align-items: center;
   display: grid;
-  grid-template-columns: 30px 50px 250px 200px auto 30px;
+  grid-template-columns: 30px 50px 250px 200px auto 35px;
   border-bottom: 1px solid #333;
   padding: 10px 0;
+}
+section.listing #longSongs div .track-number, section.listing #mediumSongs div .track-number, section.listing #shortSongs div .track-number {
+  margin-left: 8px;
 }
 section.listing #longSongs div img, section.listing #mediumSongs div img, section.listing #shortSongs div img {
   height: 40px;

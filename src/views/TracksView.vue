@@ -13,8 +13,8 @@
         </div>
       </div>
       <div class="links">
+        <a href="https://github.com/KaazDW/Spotify-Stats-Tracks" target="_blank" class="btn">See the project on Github <i class="bi bi-box-arrow-in-up-right"></i></a>
         <RouterLink class="btn" to="/">Log Out</RouterLink>
-        <a href="" class="btn">See the project on Github <i class="bi bi-box-arrow-in-up-right"></i></a>
       </div>
     </section>
 
