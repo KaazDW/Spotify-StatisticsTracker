@@ -163,7 +163,7 @@ function displayTracks({tracks, query}: { tracks: any, query: string }) {
 
         const albumNameSpan = document.createElement('span');
         albumNameSpan.innerText = albumName;
-        albumNameSpan.className = 'album-name';
+        albumNameSpan.className = 'album-name dnone';
         paragraph.appendChild(albumNameSpan);
 
         // Create a link to the song's Spotify page with the Spotify logo as its content
@@ -175,7 +175,7 @@ function displayTracks({tracks, query}: { tracks: any, query: string }) {
         const spotifyLogoImg = document.createElement('img');
         spotifyLogoImg.src = 'https://raw.githubusercontent.com/KaazDW/Spotify-Stats-Tracks/main/public/spotify.svg';
         spotifyLogoImg.alt = 'Spotify logo';
-        spotifyLogoImg.className = 'spotify-logo';
+        spotifyLogoImg.className = 'spotify-logo dnone';
 
         spotifyLogoLink.appendChild(spotifyLogoImg);
 

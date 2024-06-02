@@ -29,17 +29,6 @@
   a{text-decoration: none; color: white;}
   button:hover{cursor: pointer;}
 }
-//.btn {
-//  font-size: 14px;
-//  color: var(--color-black);
-//  background-color: var(--color-white);
-//  border-radius: 50px;
-//  padding: 6px 16px;
-//  font-weight: 700;
-//  margin: 5px;
-//  display: flex;
-//  align-items: center;
-//}
 
 // Main style definition, header and body disposition
 body {
@@ -51,12 +40,17 @@ body {
     width: 100%;
     max-width: 900px;
     margin: auto;
-    @media (max-width: 1300px) {
-      width: 100%;
+    @media (max-width: 600px) {
+      width: 95%;
     }
   }
 }
 
+@media (max-width: 600px) {
+  .dnone{
+    display: none !important;
+  }
+}
 
 header{
   margin: 30px 7px 10px;
@@ -180,21 +174,21 @@ section.listing{
     div{
       align-items: center;
       display: grid;
-      grid-template-columns: 40px 50px 250px 200px auto 35px;
       border-bottom: 1px solid #333;
       padding: 10px 0;
-      .track-number{
+      grid-template-columns: 40px 50px 250px 200px auto 35px;
+      @media (max-width: 600px) {
+        grid-template-columns: 40px 50px auto 130px;
+      }
+        .track-number{
         margin-left: 8px;
       }
       img{
         height: 40px;
       }
-      .element-info{
-        display: flex;
         a.artist-name{
-          margin: 0 15px;
+          margin-left: 10px;
         }
-      }
       img.spotify-logo{
         height: 25px;
       }
@@ -204,6 +198,7 @@ section.listing{
 
 section.home{
   h1{
+    margin-top: 50px;
     text-align: center;
     font-size: 35px;
     span{
@@ -211,10 +206,11 @@ section.home{
     }
   }
   h3{
-    font-weight: 300;
+    font-weight: 200;
     text-align: center;
-    width: 50%;
-    margin: 50px auto auto;
+    width: 70%;
+    font-size: 18px;
+    margin: 30px auto auto;
     color: var(--color-lightgrey);
   }
   .login-button{
@@ -223,7 +219,7 @@ section.home{
     a.btn-home{
       display: inline-flex;
       align-items: center;
-      text-transform: uppercase;
+      //text-transform: uppercase;
       font-size: 22px;
 
       color: var(--color-black);
@@ -240,6 +236,14 @@ section.home{
         margin-right: 10px;
       }
     }
+  }
+}
+small {
+  display: block;
+  text-align: center;
+  @media (max-width: 600px) {
+    width: 80%;
+    margin: auto;
   }
 }
 //
@@ -421,3 +425,6 @@ section.home{
 //    }
 //  }
 //}
+
+
+

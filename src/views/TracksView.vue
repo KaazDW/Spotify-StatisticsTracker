@@ -2,7 +2,7 @@
   <div>
     <header>
       <h1><i class="bi bi-card-list"></i>Stats-Tracks</h1>
-      <h3>See your Spotify Listening Statistics</h3>
+      <h3 class="dnone">See your Spotify Listening Statistics</h3>
     </header>
     <section class="profile">
       <div class="user">
@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="links">
-        <a href="https://github.com/KaazDW/Spotify-Stats-Tracks" target="_blank" class="btn">See the project on Github <i class="bi bi-box-arrow-in-up-right"></i></a>
+        <a href="https://github.com/KaazDW/Spotify-Stats-Tracks" target="_blank" class="btn dnone">See the project on Github <i class="bi bi-box-arrow-in-up-right"></i></a>
         <RouterLink class="btn" to="/">Log Out</RouterLink>
       </div>
     </section>
@@ -21,8 +21,8 @@
     <section class="nav">
       <p>Select your data period :</p>
       <div>
-        <button @click="setActiveButton('long')" class="btn" :class="{ active: activeButton === 'long' }">All time</button>
-        <button @click="setActiveButton('medium')" class="btn" :class="{ active: activeButton === 'medium' }">6 months</button>
+        <button @click="setActiveButton('long')" class="btn" :class="{ active: activeButton === 'long' }">Last Year</button>
+        <button @click="setActiveButton('medium')" class="btn" :class="{ active: activeButton === 'medium' }">Last 6 months</button>
         <button @click="setActiveButton('short')" class="btn" :class="{ active: activeButton === 'short' }">Last month</button>
       </div>
     </section>
