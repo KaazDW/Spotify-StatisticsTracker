@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <h1>Stats-Tracks</h1>
+      <h1><i class="bi bi-card-list"></i>Stats-Tracks</h1>
       <h3>See your Spotify Listening Statistics</h3>
     </header>
     <section class="profile">
@@ -19,7 +19,7 @@
     </section>
 
     <section class="nav">
-      <p>Select your data period</p>
+      <p>Select your data period :</p>
       <div>
         <button @click="setActiveButton('long')" class="btn" :class="{ active: activeButton === 'long' }">All time</button>
         <button @click="setActiveButton('medium')" class="btn" :class="{ active: activeButton === 'medium' }">6 months</button>

@@ -54,6 +54,13 @@ header {
   border-bottom: 2px solid #333;
   margin-bottom: 25px;
 }
+header h1 {
+  display: flex;
+  align-items: center;
+}
+header h1 i {
+  margin-right: 15px;
+}
 
 section.profile {
   display: flex;
@@ -106,7 +113,8 @@ section.profile .links a.btn i {
 }
 
 section.nav {
-  margin-top: 30px;
+  margin-top: 50px;
+  margin-bottom: 25px;
 }
 section.nav p {
   color: lightgrey;
