@@ -1,15 +1,16 @@
 <template>
-    <section class="home">
-      <h5>See your top spotify statistics</h5>
-      <h1>Stat-Tracks</h1>
-      <img src="/images/mockup_mobile.png" alt="Stats-Tracker mockup" />
-      <div class="bottom">
-        <div class="space"></div>
-        <div class="button-login">
-          <i class="bi bi-spotify" style="color: var(--color-green);font-size: 40px;"></i>
-          <RouterLink class="btn-home" to="/login">Login<i class="bi bi-arrow-up-right-square-fill" style="color: var(--color-black);"></i></RouterLink>
-        </div>
-        <small>© 2024 - Stat-Tracks. <br/>We are not related to Spotify AB or any of it´s partners in any way</small>
-      </div>
-    </section>
+  <header>
+    <h1><i class="bi bi-card-list"></i>Stats-Tracks</h1>
+    <a href="https://github.com/KaazDW/Spotify-Stats-Tracks" target="_blank" class="btn">See the project on Github <i class="bi bi-box-arrow-in-up-right"></i></a>
+  </header>
+  <section class="home">
+    <h1>Consult your <span>Spotify Listening Statistics</span></h1>
+    <h3>Web app using the Spotify's web API for allow you to consult your Spotify Listening Personnal Ranking</h3>
+    <div class="login-button">
+      <RouterLink class="btn-home" to="/login"><i class="bi bi-spotify"></i>Login</RouterLink>
+    </div>
+    <small>© 2024 - Stat-Tracks. <br/>We are not related to Spotify AB or any of it´s partners in any way</small>
+  </section>
 </template>
+<script setup lang="ts">
+</script>
