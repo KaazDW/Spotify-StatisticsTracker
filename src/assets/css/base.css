@@ -182,6 +182,9 @@ section.listing #longArtists a, section.listing #mediumArtists a, section.listin
   margin: 0 5px;
   padding-right: 10px;
 }
+section.listing #longArtists a:hover, section.listing #mediumArtists a:hover, section.listing #shortArtists a:hover {
+  background-color: #181818;
+}
 section.listing #longArtists a img, section.listing #mediumArtists a img, section.listing #shortArtists a img {
   height: 50px;
   margin-right: 10px;
@@ -198,29 +201,33 @@ section.listing #longArtists a div span.artist-number, section.listing #mediumAr
   font-size: 17px;
   font-weight: 700;
 }
-section.listing #longSongs div, section.listing #mediumSongs div, section.listing #shortSongs div {
+section.listing #longSongs div.element, section.listing #mediumSongs div.element, section.listing #shortSongs div.element {
   align-items: center;
   display: grid;
   border-bottom: 1px solid #333;
   padding: 10px 0;
   grid-template-columns: 40px 50px 250px 200px auto 35px;
+  transition: 0.2s;
 }
 @media (max-width: 600px) {
-  section.listing #longSongs div, section.listing #mediumSongs div, section.listing #shortSongs div {
+  section.listing #longSongs div.element, section.listing #mediumSongs div.element, section.listing #shortSongs div.element {
     grid-template-columns: 40px 50px auto 130px;
   }
 }
-section.listing #longSongs div .track-number, section.listing #mediumSongs div .track-number, section.listing #shortSongs div .track-number {
+section.listing #longSongs div.element .track-number, section.listing #mediumSongs div.element .track-number, section.listing #shortSongs div.element .track-number {
   margin-left: 8px;
 }
-section.listing #longSongs div img, section.listing #mediumSongs div img, section.listing #shortSongs div img {
+section.listing #longSongs div.element img, section.listing #mediumSongs div.element img, section.listing #shortSongs div.element img {
   height: 40px;
 }
-section.listing #longSongs div a.artist-name, section.listing #mediumSongs div a.artist-name, section.listing #shortSongs div a.artist-name {
+section.listing #longSongs div.element a.artist-name, section.listing #mediumSongs div.element a.artist-name, section.listing #shortSongs div.element a.artist-name {
   margin-left: 10px;
 }
-section.listing #longSongs div img.spotify-logo, section.listing #mediumSongs div img.spotify-logo, section.listing #shortSongs div img.spotify-logo {
+section.listing #longSongs div.element img.spotify-logo, section.listing #mediumSongs div.element img.spotify-logo, section.listing #shortSongs div.element img.spotify-logo {
   height: 25px;
+}
+section.listing #longSongs div.element:hover, section.listing #mediumSongs div.element:hover, section.listing #shortSongs div.element:hover {
+  background-color: #181818;
 }
 
 section.home h1 {

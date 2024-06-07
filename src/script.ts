@@ -1,6 +1,9 @@
 import { redirectToAuthCodeFlow, getAccessToken } from "./authCodeWithPkce";
+import 'dotenv/config';
 
-const clientId  = "4d47f7f7b6234523bba1a4aa4824f505";
+const clientId = process.env.API_KEY;
+
+// const clientId  = "";
 export function checkAccessToken() {
     const cookies = document.cookie.split('; ');
     const accessTokenCookie = cookies.find(row => row.startsWith('access_token='));
