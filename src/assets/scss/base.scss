@@ -167,8 +167,38 @@ section.listing{
   border-top: 3px solid #333;
   padding-top: 10px;
   margin-top: 20px;
+  //#longArtists, #mediumArtists, #shortArtists {
+  //  //display: none;
+  //}
   #longArtists, #mediumArtists, #shortArtists {
-    display: none;
+    margin: 20px 0;
+    display: flex;
+    a{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      border: 1px solid #333;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      margin: 0 5px;
+      padding-right: 10px;
+      img{
+        height: 50px;
+        margin-right: 10px;
+      }
+      div{
+        display: flex;
+        align-items: center;
+        img{
+          height: 20px;
+        }
+        span.artist-number{
+          margin-right: 7px;
+          font-size: 17px;
+          font-weight: 700;
+        }
+      }
+    }
   }
   #longSongs, #mediumSongs, #shortSongs {
     div{
@@ -243,6 +273,6 @@ small {
   text-align: center;
   @media (max-width: 600px) {
     width: 80%;
-    margin: auto;
+    margin: 45px auto 15px;
   }
 }

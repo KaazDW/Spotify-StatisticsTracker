@@ -9,7 +9,7 @@
     <div class="login-button">
       <RouterLink class="btn-home" to="/login"><i class="bi bi-spotify"></i>LOGIN with Spotify</RouterLink>
     </div>
-    <small>© 2024 - Stat-Tracks. <br/>We are not related to Spotify AB or any of it´s partners in any way</small>
+    <small>© 2024 - Stat-Tracks by <a href="https://github.com/KaazDW" target="_blank">KaazDW</a>. <br/>We are not related to Spotify AB or any of it´s partners in any way</small>
   </section>
 </template>
 <script setup lang="ts">

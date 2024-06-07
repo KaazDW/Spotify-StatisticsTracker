@@ -72,16 +72,15 @@ async function fetchTopTrack(code: string, time: string) {
 async function fetchTopArtist(code: string, time: string) {
     let TopArtists: any[] = [];
 
-    for (let i = 0; i < 1; i++) {
-        const result = await fetch("https://api.spotify.com/v1/me/top/artists?limit=20&offset=0&time_range=" + time, {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${code}`
-            }
-        });
-        const data = await result.json();
-        TopArtists = TopArtists.concat(data.items);
-    }
+    const result = await fetch("https://api.spotify.com/v1/me/top/artists?limit=3&offset=0&time_range=" + time, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${code}`
+        }
+    });
+    const data = await result.json();
+    TopArtists = TopArtists.concat(data.items);
+
     // console.log("TopArtists : ", time, " : ", TopArtists);
     return TopArtists;
 }
@@ -108,7 +107,6 @@ async function fetchCurrentlyPlaying(code: string) {
         throw new Error("Empty response from Spotify API");
     }
 
-    // console.log("CurrentPlay : ", data);
     return data;
 }
 
