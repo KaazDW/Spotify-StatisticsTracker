@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 import { inject } from '@vercel/analytics';
 
-inject({ projectId: 'prj_LIW8SSAt1NTwMQJWEvVExdY1lejp' });
+inject({ projectId: '...' });
 
 const app = createApp(App)
 
